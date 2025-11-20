@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AD504F70-D78D-4387-B5A7-C1CF0F70A6C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F144D431-8EA6-4B54-8169-B9F5F3319FE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{41C282E1-0805-4B8A-BDD8-6C92F3B46567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{2231BFCF-CE1C-423B-B6B3-703284C638E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyrgyzTest.Api", "KyrgyzTest.Api\KyrgyzTest.Api.csproj", "{4E95B72C-AD45-4351-BCCB-4C612C40A35D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyrgyzTest.Core", "KyrgyzTest.Core\KyrgyzTest.Core.csproj", "{A940BC46-5685-4ADC-AFA1-7C92C3F86086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyrgyzTest.Application", "KyrgyzTest.Application\KyrgyzTest.Application.csproj", "{85FAB5D2-A4B0-4F17-B81D-348A45AE4F60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyrgyzTest.DAL", "KyrgyzTest.DAL\KyrgyzTest.DAL.csproj", "{52EEE6D2-2090-4452-8565-ADD445FC9E8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E95B72C-AD45-4351-BCCB-4C612C40A35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E95B72C-AD45-4351-BCCB-4C612C40A35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E95B72C-AD45-4351-BCCB-4C612C40A35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E95B72C-AD45-4351-BCCB-4C612C40A35D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A940BC46-5685-4ADC-AFA1-7C92C3F86086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A940BC46-5685-4ADC-AFA1-7C92C3F86086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A940BC46-5685-4ADC-AFA1-7C92C3F86086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A940BC46-5685-4ADC-AFA1-7C92C3F86086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FAB5D2-A4B0-4F17-B81D-348A45AE4F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FAB5D2-A4B0-4F17-B81D-348A45AE4F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FAB5D2-A4B0-4F17-B81D-348A45AE4F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FAB5D2-A4B0-4F17-B81D-348A45AE4F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52EEE6D2-2090-4452-8565-ADD445FC9E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52EEE6D2-2090-4452-8565-ADD445FC9E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52EEE6D2-2090-4452-8565-ADD445FC9E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52EEE6D2-2090-4452-8565-ADD445FC9E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E95B72C-AD45-4351-BCCB-4C612C40A35D} = {2231BFCF-CE1C-423B-B6B3-703284C638E7}
+		{A940BC46-5685-4ADC-AFA1-7C92C3F86086} = {AD504F70-D78D-4387-B5A7-C1CF0F70A6C0}
+		{85FAB5D2-A4B0-4F17-B81D-348A45AE4F60} = {F144D431-8EA6-4B54-8169-B9F5F3319FE5}
+		{52EEE6D2-2090-4452-8565-ADD445FC9E8E} = {41C282E1-0805-4B8A-BDD8-6C92F3B46567}
+	EndGlobalSection
+EndGlobal
