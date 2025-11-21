@@ -28,13 +28,13 @@
               @click="store.downloadReport"
               class="bg-blue-400 w-full text-white px-4 py-2 hover:bg-blue-900"
           >
-            Скачать Word
+            Скачать в Word
           </button>
           <button
               @click="store.downloadExcelReport"
               class="bg-primary w-full text-white px-4 py-2 hover:bg-primary-dark"
           >
-            Скачать Excel
+            Скачать в Excel
           </button>
         </div>
         <p class="p-3">Всего символов: {{ store.charCount }}</p>
