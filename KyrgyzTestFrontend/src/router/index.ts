@@ -5,6 +5,7 @@ import RegisterPage from "@/pages/RegisterForm.vue";
 import { useAuthStore } from "@/store/auth";
 
 const routes: Array<RouteRecordRaw> = [
+    { path: "/", redirect: "/login" },
     { path: "/login", component: LoginPage },
     { path: "/register", component: RegisterPage },
     { path: "/home", component: HomePage, meta: { requiresAuth: true } },

@@ -18,9 +18,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 }
 
 // dotnet ef migrations add FirstMigration `
-//     >> --project "FrequencyDictionary.DAL/FrequencyDictionary.DAL.csproj" `
-//     >> --startup-project "FrequencyDictionary.Api/FrequencyDictionary.Api.csproj"
+//      >> --project "KyrgyzTest.DAL/KyrgyzTest.DAL.csproj" `
+//      >> --startup-project "KyrgyzTest.Api/KyrgyzTest.Api.csproj"
 
 // dotnet ef database update
-//      >> --project "FrequencyDictionary.DAL/FrequencyDictionary.DAL.csproj" `
-//      >> --startup-project "FrequencyDictionary.Api/FrequencyDict
+//      >> --project "KyrgyzTest.DAL/KyrgyzTest.DAL.csproj" `
+//      >> --startup-project "KyrgyzTest.Api/KyrgyzTest.Api.csproj"
+
+// dotnet ef migrations remove `
+// --project "KyrgyzTest.DAL/KyrgyzTest.DAL.csproj" `
+// --startup-project "KyrgyzTest.Api/KyrgyzTest.Api.csproj"

@@ -6,60 +6,66 @@ using KyrgyzTest.DAL.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Добавляем CORS
+#region CORS (ТОЛЬКО ТАК ДЛЯ COOKIE + HTTPS)
 builder.Services.AddCors(options =>
-{   
-    options.AddPolicy("AllowFrontend", policy =>
+{
+    options.AddPolicy("FrontendPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // адрес фронта
+        policy
+            .WithOrigins("https://kyrgyztestsystem") // фронт-домен
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
+#endregion
 
-
-// Add services to the container.
+// Controllers + Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// HttpContext for usage in the Application layer
+// HttpContext
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IHttpAccessorService, HttpAccessorService>();
 
-
-builder.Services.AddAuthentication().AddCookie("Cookies", options =>
-{
-    options.Cookie.HttpOnly = true; // so the cookie cannot be read from JS
-    options.SlidingExpiration = true; // refresh expiration time when active
-});
+#region AUTH (Cookies)
+builder.Services
+    .AddAuthentication("Cookies")
+    .AddCookie("Cookies", options =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SameSite = SameSiteMode.None;   // 🔴 ОБЯЗАТЕЛЬНО для cross-site
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // 🔴 ТОЛЬКО HTTPS
+        options.SlidingExpiration = true;
+    });
+#endregion
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
 
-// Run database seed
+#region DB INIT
 using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     initializer.Initialize();
 }
+#endregion
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-app.UseCors("AllowFrontend");
+// ================= PIPELINE =================
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseRouting();                // 🔴 ОБЯЗАТЕЛЬНО
+
+app.UseCors("FrontendPolicy");   // 🔴 ДО Auth
 
 app.UseAuthentication();
-
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
+
 app.Run();
