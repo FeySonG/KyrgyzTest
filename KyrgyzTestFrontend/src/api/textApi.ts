@@ -8,12 +8,13 @@ import {
 } from "../types/types";
 
 const api = axios.create({
-    baseURL: "http://localhost:5227/api/text-works",
+    baseURL: `${import.meta.env.VITE_TEXT_API_URL}/api/text-works`,
+    withCredentials: true
 });
 
 export async function analyzeText(request: TextRequest): Promise<AnalysisResponseDto> {
     const response = await api.post<TextAnalysisDto>("/text-analyze", request, {
-        headers: { "Content-Type": "application/json" }
+        headers: {"Content-Type": "application/json"}
     });
 
     // Преобразуем Dictionary<string,int> в массив для таблицы
@@ -34,7 +35,7 @@ export async function analyzeText(request: TextRequest): Promise<AnalysisRespons
 
 export async function downloadAnalysisReport(request: TextRequest) {
     const response = await api.post("/text-analyze-report", request, {
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         responseType: "blob" // важно для бинарного Word-файла
     });
 
@@ -75,7 +76,7 @@ export async function downloadExcelReport(request: TextRequest) {
 
 export async function searchText(request: SearchArgs): Promise<WordFrequency[]> {
     try {
-        const { data } = await api.post<WordFrequency[]>("/text-search", request);
+        const {data} = await api.post<WordFrequency[]>("/text-search", request);
         return data; // ✅ возвращаем данные напрямую
     } catch (error: any) {
         // Axios выбрасывает ошибку, если статус не 2xx

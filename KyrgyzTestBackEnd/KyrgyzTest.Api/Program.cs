@@ -9,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 #region CORS (ТОЛЬКО ТАК ДЛЯ COOKIE + HTTPS)
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("FrontendPolicy", policy =>
+    options.AddPolicy("Frontend", policy =>
     {
         policy
-            .WithOrigins("https://kyrgyztestsystem") // фронт-домен
+            .WithOrigins("https://kyrgyztestsystem")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
@@ -30,15 +30,14 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IHttpAccessorService, HttpAccessorService>();
 
 #region AUTH (Cookies)
-builder.Services
-    .AddAuthentication("Cookies")
+builder.Services.AddAuthentication("Cookies")
     .AddCookie("Cookies", options =>
     {
         options.Cookie.HttpOnly = true;
-        options.Cookie.SameSite = SameSiteMode.None;   // 🔴 ОБЯЗАТЕЛЬНО для cross-site
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // 🔴 ТОЛЬКО HTTPS
-        options.SlidingExpiration = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.None;
     });
+
 #endregion
 
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -59,9 +58,9 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseRouting();                // 🔴 ОБЯЗАТЕЛЬНО
+app.UseRouting();       
 
-app.UseCors("FrontendPolicy");   // 🔴 ДО Auth
+app.UseCors("Frontend");   
 
 app.UseAuthentication();
 app.UseAuthorization();
