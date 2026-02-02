@@ -14,5 +14,5 @@ public class User : Entity
     
     public required string Password { get; set; }
     
-    public UserRole Role { get; set; } = UserRole.Employee;
+    public UserRole Role { get; set; } = UserRole.User;
 }

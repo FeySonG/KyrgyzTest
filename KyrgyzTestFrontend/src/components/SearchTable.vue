@@ -48,17 +48,25 @@
             <!-- Кнопка поиска -->
             <button
                 @click="searchWord"
-                class="absolute inset-y-0 right-0 flex items-center px-4 bg-blue-600
-             text-white rounded-r-xl hover:bg-blue-700 active:bg-blue-800
-             focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   fill="none" viewBox="0 0 24 24"
-                   stroke-width="2" stroke="currentColor"
-                   class="w-5 h-5 mr-1">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M21 21l-4.35-4.35M5.5 11a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0z" />
-              </svg>
-              Найти
+                class="absolute
+                       inset-y-0
+                       right-0
+                       flex
+                       items-center
+                       px-4
+                       bg-primary
+                     text-white
+                       rounded-r-xl
+                       hover:bg-primary-dark
+                       active:bg-blue-800
+                       focus:outline-none
+                       focus:ring-2
+                       focus:ring-blue-400
+                       transition">
+
+              <MagnifyingGlassIcon class="w-5 h-5"/>
+             <span class="p-1">Найти</span>
+
             </button>
           </div>
         </div>
@@ -88,7 +96,7 @@
 <script setup lang="ts">
 import {useTextStore} from "@/store/textStore";
 import {ref} from "vue";
-
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 const store = useTextStore();
 const query = ref("");
 

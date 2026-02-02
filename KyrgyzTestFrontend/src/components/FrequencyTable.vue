@@ -1,9 +1,9 @@
 <template>
   <div class="p-4 w-1/2 min-h-screen flex flex-row">
 
-    <div v-if="store.loading">Загрузка...</div>
-    <div v-else-if="store.error" class="text-red-500">{{ store.error }}</div>
-    <div v-else-if="store.frequencies.length" class="
+    <div v-if="textStore.loading">Загрузка...</div>
+<!--    <div v-else-if="textStore.error" class="text-red-500">{{ textStore.error }}</div>-->
+    <div v-else-if="textStore.frequencies.length" class="
               p-4
               border-4
               overflow-y-auto
@@ -22,23 +22,23 @@
               text-gray-800">
 
 
-      <div class="min-w-10 mb-3 border-collapse bg-silver shadow-lg">
+      <div class="min-w-10 mb-3 border-collapse bg-pearl shadow-lg">
         <div class="flex justify-between">
           <button
-              @click="store.downloadReport"
+              @click="textStore.downloadReport"
               class="bg-blue-400 w-full text-white px-4 py-2 hover:bg-blue-900"
           >
             Скачать в Word
           </button>
           <button
-              @click="store.downloadExcelReport"
+              @click="textStore.downloadExlReport"
               class="bg-primary w-full text-white px-4 py-2 hover:bg-primary-dark"
           >
             Скачать в Excel
           </button>
         </div>
-        <p class="p-3">Всего символов: {{ store.charCount }}</p>
-        <p class="p-3">Всего слов: {{ store.wordCount }}</p>
+        <p class="p-3">Всего символов: {{ textStore.charCount }}</p>
+        <p class="p-3">Всего слов: {{ textStore.wordCount }}</p>
       </div>
 
       <!-- Таблица частот -->
@@ -51,7 +51,7 @@
         </thead>
         <tbody>
         <tr
-            v-for="(f, i) in store.frequencies"
+            v-for="(f, i) in textStore.frequencies"
             :key="i"
             class="odd:bg-white even:bg-gray-100 hover:bg-blue-50 transition"
         >
@@ -62,7 +62,7 @@
       </table>
     </div>
 
-    <SearchTable v-if="store.frequencies.length" class="-mt-4"/>
+    <SearchTable v-if="textStore.frequencies.length" class="-mt-4"/>
   </div>
 </template>
 
@@ -70,5 +70,5 @@
 import {useTextStore} from "@/store/textStore";
 import SearchTable from "@/components/SearchTable.vue";
 
-const store = useTextStore();
+const textStore = useTextStore();
 </script>

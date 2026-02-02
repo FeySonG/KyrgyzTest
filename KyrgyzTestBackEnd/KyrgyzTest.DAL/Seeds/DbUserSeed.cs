@@ -15,7 +15,7 @@ public static class DbUserSeed
                 LastName = "Ajiev",
                 Login = "Daniel@mail.com",
                 Password = passwordService.Hash("123"),
-                Role = UserRole.Manager
+                Role = UserRole.Admin
             });
         }
         context.SaveChanges();

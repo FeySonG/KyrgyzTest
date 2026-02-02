@@ -1,11 +1,23 @@
 <template>
   <button
       @click="toggleTheme"
-      class="p-3 rounded-full bg-primary dark:bg-primary-dark hover:bg-primary-dark dark:hover:bg-primary transition"
+      class="p-3
+             rounded-full
+             bg-primary
+             dark:bg-primary-dark
+             hover:bg-primary-dark
+             dark:hover:bg-primary
+
+"
   >
     <component
         :is="isDark ? MoonIcon : SunIcon"
-        class="w-6 h-6 text-gray-800 dark:text-gray-200"
+        class="w-6 h-6
+             text-pearl
+               transition-all
+               duration-700 ease-out
+               hover:rotate-[360deg]
+               hover:scale-110"
     />
   </button>
 </template>

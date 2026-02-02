@@ -1,3 +1,5 @@
+import {UserRole} from "@/types/userTypes/userRole";
+
 export interface WordFrequency {
     word: string;
     count: number;
@@ -28,4 +30,14 @@ export interface SearchArgs {
 }
 export interface SearchResponse {
     words: WordFrequency[];
+}
+
+export interface CurrentUser {
+    id: number;
+    name: string;
+    firstName: string;
+    lastName: string;
+    middleName: string;
+    login: string;
+    role: UserRole;
 }

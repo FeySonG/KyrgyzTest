@@ -1,53 +1,86 @@
 import { defineStore } from "pinia";
-import {registerUser, loginUser, logoutUser, type RegisterRequest, fetchCurrentUser} from "../api/authApi";
+import {
+    registerUser,
+    loginUser,
+    logoutUser,
+    fetchCurrentUser,
+    type RegisterRequest
+} from "../api/authApi";
+import { CurrentUser } from "@/types/types";
+import { useAlertStore } from "@/store/alertStore";
 
 export const useAuthStore = defineStore("auth", {
     state: () => ({
-        user: undefined as undefined | null | { login: string }, // undefined при старте
+        user: undefined as CurrentUser | null | undefined, // undefined = ещё не проверяли
         loading: false,
         error: ""
     }),
+
+    getters: {
+        isAuth: (state) => state.user !== null && state.user !== undefined,
+        isAdmin: (state) => state.user?.role === "Admin"
+    },
+
     actions: {
+
         async register(payload: RegisterRequest) {
             this.loading = true;
             this.error = "";
+            const alert = useAlertStore();
+
             try {
                 await registerUser(payload);
-                this.user = { login: payload.login };
+                await this.fetchUserFromServer();
+                alert.success("Регистрация прошла успешно");
             } catch (err: any) {
                 this.error = err.response?.data || "Ошибка регистрации";
+                alert.error(this.error);
             } finally {
                 this.loading = false;
             }
         },
 
         async login(login: string, password: string) {
+            this.loading = true;
+            this.error = "";
+            const alert = useAlertStore();
             try {
-                this.error = "";
                 await loginUser({ login, password });
-                this.user = { login };
+                await this.fetchUserFromServer();
+                alert.success("Вы успешно вошли в систему");
             } catch (err: any) {
                 this.error = err.response?.data || "Ошибка авторизации";
+                alert.error(this.error);
                 throw err;
+            } finally {
+                this.loading = false;
             }
         },
 
         async logout() {
-            await logoutUser();
-            this.user = null;
+            const alert = useAlertStore();
+            try {
+                await logoutUser();
+                this.user = null;
+                alert.success("Вы вышли из системы");
+            } catch (err: any) {
+                alert.error(err.response?.data || "Ошибка при выходе");
+            }
         },
 
-        // 🔹 Подтягиваем текущего пользователя с сервера через cookie
         async fetchUserFromServer() {
+            const alert = useAlertStore();
             this.loading = true;
             try {
                 const data = await fetchCurrentUser();
-                this.user = data ? { login: data.login } : null;
-            } catch {
+                this.user = data;
+            } catch (err: any) {
                 this.user = null;
+                alert.error("Не удалось получить данные пользователя");
             } finally {
                 this.loading = false;
             }
-        }
+        },
+
     }
 });

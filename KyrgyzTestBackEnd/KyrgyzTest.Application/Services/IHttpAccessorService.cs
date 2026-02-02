@@ -1,3 +1,4 @@
+using KyrgyzTest.Application.Contracts.Users;
 using KyrgyzTest.Core.Models.Users;
 
 namespace KyrgyzTest.Application.Services;
@@ -7,4 +8,5 @@ public interface IHttpAccessorService
 {
     public Task LoginHttpContext(User user);
     public long GetUserId();
+    public CheckUserDto? GetUserRole();
 }

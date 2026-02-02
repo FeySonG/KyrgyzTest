@@ -28,7 +28,6 @@ public class UpdateUserCommandHandler(
         
         await unitOfWork.SaveChangesAsync();
         return Result.Ok(UserDto.Create(editUser));
-        
     }
     
     private User EditUser(UpdateUserDto updateArgs, User user)

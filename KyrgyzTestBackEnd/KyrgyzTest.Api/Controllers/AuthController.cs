@@ -1,4 +1,6 @@
+using System.Security.Claims;
 using KyrgyzTest.Application.Contracts.Users;
+using KyrgyzTest.Application.Models.Users.Auth.CheckUser;
 using KyrgyzTest.Application.Models.Users.Auth.LogIn;
 using KyrgyzTest.Application.Models.Users.Auth.Registration;
 using MediatR;
@@ -15,12 +17,12 @@ public class AuthController(ISender sender) : ControllerBase
     public async Task<IActionResult> Registration([FromBody] RegistrationDto dto)
     {
         var result = await sender.Send(new RegistrationCommand(dto));
-        
+
         return result.Match(
             onSuccess: value => Ok(),
             onFailure: error => BadRequest(error.Message));
     }
-    
+
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LogInDto loginDto)
     {
@@ -30,26 +32,25 @@ public class AuthController(ISender sender) : ControllerBase
             onSuccess: value => Ok("Authorize!"),
             onFailure: error => Unauthorized(error.Message));
     }
-    
+
     [HttpPost("logout")]
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync("Cookies");
         return Ok();
     }
-    
+
     [HttpGet("me")]
-    public IActionResult Me()
+    public async Task<IActionResult> Me()
     {
-        if (User.Identity?.IsAuthenticated ?? false)
-        {
-            // возвращаем объект с логином или другими данными пользователя
-            return Ok(new { login = User.Identity.Name });
-        }
-        else
-        {
-            // не авторизован
+        if (!(User.Identity?.IsAuthenticated ?? false))
             return Unauthorized();
-        }
+        
+        var result = await sender.Send(new CheckUserQuery());
+        
+        return result.Match(
+            onSuccess: value => Ok(result.Value),
+            onFailure: error => Unauthorized(error.Message));
+
     }
 }
