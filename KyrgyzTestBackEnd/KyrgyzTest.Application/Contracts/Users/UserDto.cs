@@ -6,17 +6,15 @@ public class UserDto
 {
     public long Id { get; set; }
     
-    public required string FirstName { get; set; }   // имя
+    public required string FirstName { get; set; }   
     
-    public required string LastName { get; set; }    // фамилия
+    public required string LastName { get; set; }    
     
     public string? MiddleName { get; set; } // отчество (nullable, т.к. не всегда есть)
     
     public required string Login { get; set; }
 
-    public string? Password { get; set; }
-
-    public string? Role { get; set; }
+    public required string Role { get; set; }
     
     
     public static UserDto Create(User user)
@@ -28,7 +26,6 @@ public class UserDto
             LastName = user.LastName,
             MiddleName = user.MiddleName,
             Login = user.Login,
-            Password = user.Password,
             Role = user.Role.ToString()
         };
     }

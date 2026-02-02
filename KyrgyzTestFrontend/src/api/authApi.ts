@@ -1,5 +1,6 @@
 // src/api/authApi.ts
 import axios from "axios";
+import {CurrentUser} from "@/types/types";
 
 const api = axios.create({
     baseURL: "http://localhost:5227/api-auth",
@@ -37,13 +38,12 @@ export async function logoutUser() {
     return response.data;
 }
 
-
 // 🔹 Проверка текущего пользователя по куки
-export async function fetchCurrentUser() {
+export async function fetchCurrentUser(): Promise<CurrentUser | null> {
     try {
-        const response = await api.get("/me"); // эндпоинт на сервере
-        return response.data; // { login: string }
+        const response = await api.get<CurrentUser>("/me");
+        return response.data;
     } catch {
-        return null; // если не авторизован
+        return null;
     }
 }

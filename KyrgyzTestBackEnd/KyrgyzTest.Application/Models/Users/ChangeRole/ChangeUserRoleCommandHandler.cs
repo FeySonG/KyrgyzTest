@@ -13,14 +13,14 @@ public class ChangeUserRoleCommandHandler(
 {
     public async Task<Result<string>> Handle(ChangeUserRoleCommand request, CancellationToken cancellationToken)
     {
-        var user = await userRepository.GetByIdAsync(request.UserId);
+        var user = await userRepository.GetByIdAsync(request.Args.UserId);
 
         if (user == null)
         {
-            return new Error(UserErrorCode.UserNotFound, $"Operation failed user id: {request.UserId} not found");
+            return new Error(UserErrorCode.UserNotFound, $"Operation failed user id: {request.Args.UserId} not found");
         }
 
-        user.Role = request.Role;
+        user.Role = request.Args.Role;
 
         userRepository.Update(user);
         await unitOfWork.SaveChangesAsync();

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using KyrgyzTest.Api.Extensions;
 using KyrgyzTest.Application.Abstractions;
 using KyrgyzTest.Application.Extensions;
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Добавляем CORS
 builder.Services.AddCors(options =>
-{   
+{
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy.WithOrigins("http://localhost:5173") // адрес фронта
@@ -20,7 +21,14 @@ builder.Services.AddCors(options =>
 
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(o =>
+{
+    o.JsonSerializerOptions.Converters
+        .Add(
+            new JsonStringEnumConverter()
+        );
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -53,6 +61,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors("AllowFrontend");
 
 app.UseAuthentication();

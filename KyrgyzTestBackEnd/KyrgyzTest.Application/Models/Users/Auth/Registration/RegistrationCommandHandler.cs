@@ -38,7 +38,7 @@ public class RegistrationCommandHandler(
             MiddleName = dto.MiddleName,
             Login = dto.Login,
             Password = dto.Password,
-            Role = UserRole.Employee
+            Role = UserRole.User
         };
     }
 }

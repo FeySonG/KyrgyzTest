@@ -21,18 +21,14 @@
         placeholder="Введите текст для анализа..."
     ></textarea>
 
-    <button
-        @click="analyze"
-        class="bg-blue-600 text-white px-6 py-2 mt-3 rounded-md hover:bg-blue-700 hover:shadow-lg transition duration-200"
-    >
-      Анализировать
-    </button>
+    <BaseButton @click="analyze" class="w-52 h-10 text-lg mt-1">Анализировать</BaseButton>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useTextStore } from "../store/textStore";
+import { useTextStore } from "@/store/textStore";
+import BaseButton from "@/components/ui/buttons/BaseButton.vue";
 
 const text = ref("");
 const store = useTextStore();

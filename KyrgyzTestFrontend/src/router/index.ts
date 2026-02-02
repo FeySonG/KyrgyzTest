@@ -1,29 +1,70 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+
 import HomePage from "@/pages/HomePage.vue";
 import LoginPage from "@/pages/LoginPage.vue";
 import RegisterPage from "@/pages/RegisterForm.vue";
+import AdminPage from "@/pages/AdminPage.vue";
+import AdminUsersPage from "@/pages/AdminPages/AdminUsersPage.vue";
+import UserProfilePage from "@/pages/UserProfilePage.vue";
+
 import { useAuthStore } from "@/store/auth";
 
 const routes: Array<RouteRecordRaw> = [
-    { path: "/login", component: LoginPage },
-    { path: "/register", component: RegisterPage },
-    { path: "/home", component: HomePage, meta: { requiresAuth: true } },
+    {
+        path: "/login",
+        component: LoginPage,
+    },
+    {
+        path: "/register",
+        component: RegisterPage,
+    },
+    {
+        path: "/home",
+        component: HomePage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/profile",
+        component: UserProfilePage,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/admin",
+        component: AdminPage,
+        meta: { requiresAuth: true, requiresAdmin: true },
+        children: [
+            {
+                path: "users",
+                component: AdminUsersPage,
+            },
+        ],
+    },
+    {
+        path: "/",
+        redirect: "/home",
+    },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
 });
 
-// 🔹 Guard проверяет store, store уже синхронизирован в main.ts
+// 🔒 Глобальный guard (ОН У ТЕБЯ УЖЕ НОРМАЛЬНЫЙ)
 router.beforeEach((to, from, next) => {
     const authStore = useAuthStore();
 
     if (to.meta.requiresAuth && !authStore.user) {
-        next({ path: "/login", query: { redirect: to.fullPath } });
-    } else {
-        next();
+        next("/login");
+        return;
     }
+
+    if (to.meta.requiresAdmin && authStore.user?.role !== "Admin") {
+        next("/home");
+        return;
+    }
+
+    next();
 });
 
 export default router;
