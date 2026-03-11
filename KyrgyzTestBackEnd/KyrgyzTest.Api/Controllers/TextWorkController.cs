@@ -4,6 +4,7 @@ using KyrgyzTest.Application.TextWorks.Reports.FrecuencyReport;
 using KyrgyzTest.Application.TextWorks.Reports.FrequencyExcelReport;
 using KyrgyzTest.Application.TextWorks.TextAnalysis;
 using KyrgyzTest.Application.TextWorks.TextSearch;
+using KyrgyzTest.Application.TextWorks.WordAnalyze;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,6 +79,27 @@ public class TextWorkController(ISender sender) : ControllerBase
         {
             var response = await sender.Send(new TextSearchQuery(query));
 
+            return Ok(response);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
+    }
+
+    [HttpPost("word-analyze")]
+    public async Task<IActionResult> GetWordAnalysis([FromForm]IFormFile? file)
+    {
+        if (file is null || file.Length == 0)
+            return BadRequest("Файл не передан");
+        
+        try
+        {
+            var response = await sender.Send(new WordAnalyzeQuery(file.OpenReadStream(),  file.FileName));
             return Ok(response);
         }
         catch (ArgumentException ex)

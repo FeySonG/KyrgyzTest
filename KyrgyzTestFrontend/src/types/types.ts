@@ -10,6 +10,7 @@ export interface TextAnalysisDto {
     wordCount: number;
     charCount: number;
     words: string[];
+    text?: string | null;
     frequency: Record<string, number>;
 }
 
@@ -17,11 +18,12 @@ export interface AnalysisResponseDto {
     wordCount: number;
     charCount: number;
     words: string[];
+    text?: string | null;
     frequencies: WordFrequency[];
 }
 
 export interface TextRequest {
-    text: string;
+    text: string | null | undefined;
 }
 
 export interface SearchArgs {

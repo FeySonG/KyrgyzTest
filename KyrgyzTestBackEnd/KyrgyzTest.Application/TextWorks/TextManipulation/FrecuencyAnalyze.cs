@@ -30,8 +30,9 @@ public class FrecuencyAnalyze
         {
             WordCount = words.Length,
             CharCount = Regex.Matches(text, @"[A-Za-zА-Яа-я0-9]").Count,
+            Text = text,
             Words = words.Distinct().ToList(),
-            Frequency = sortedFrequency // 👈 добавляем сюда
+            Frequency = sortedFrequency 
         };
         
         return result;

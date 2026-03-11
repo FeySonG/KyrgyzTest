@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-    TextRequest,
-    TextAnalysisDto,
-    WordFrequency,
-    AnalysisResponseDto,
-    SearchArgs,
-} from "../types/types";
+import {AnalysisResponseDto, SearchArgs, TextAnalysisDto, TextRequest, WordFrequency,} from "../types/types";
 
 const api = axios.create({
     baseURL: "http://localhost:5227/api/text-works",
@@ -30,6 +24,35 @@ export async function analyzeText(request: TextRequest): Promise<AnalysisRespons
     };
 
     return analysisResult;
+}
+
+export async function analyzeWordFile(file: File): Promise<AnalysisResponseDto> {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await api.post<TextAnalysisDto>(
+        "/word-analyze",
+        formData,
+        {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+    );
+
+    // Преобразуем Dictionary<string,int> в массив для таблицы
+    const freqArray: WordFrequency[] = Object.entries(response.data.frequency).map(([word, count]) => ({
+        word,
+        count
+    }));
+
+    return {
+        wordCount: response.data.wordCount,
+        charCount: response.data.charCount,
+        words: response.data.words,
+        text: response.data.text,
+        frequencies: freqArray
+    };
 }
 
 export async function downloadAnalysisReport(request: TextRequest) {
@@ -85,3 +108,4 @@ export async function searchText(request: SearchArgs): Promise<WordFrequency[]> 
         throw new Error(error.message || "Ошибка при выполнении поиска");
     }
 }
+
