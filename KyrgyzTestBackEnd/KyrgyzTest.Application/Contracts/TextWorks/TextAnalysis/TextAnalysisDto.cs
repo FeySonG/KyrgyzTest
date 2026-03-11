@@ -5,6 +5,8 @@ public class TextAnalysisDto
     public long WordCount { get; set; }
     
     public long CharCount { get; set; }
+    
+    public string? Text { get; set; }
 
     public List<string> Words { get; set; } = new();
     

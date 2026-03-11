@@ -27,12 +27,11 @@ public class FrecuencyReportQueryHandler : IQueryHandler<FrecuencyReportQuery, b
             doc.InsertParagraph($"Всего слов: {analyze.WordCount}");
             doc.InsertParagraph($"Уникальных слов: {analyze.Frequency.Count}");
             doc.InsertParagraph($"Количество символов: {analyze.CharCount}");
-            doc.InsertParagraph("\nТОП-30 слов:\n").Bold();
+            doc.InsertParagraph("\nРезультат анализа:\n").Bold();
 
             // 3️⃣ Сортируем слова по частоте
             var topWords = analyze.Frequency
                 .OrderByDescending(kv => kv.Value)
-                .Take(30)
                 .ToList();
 
             // 4️⃣ Таблица: первая строка — заголовок + до 20 строк данных

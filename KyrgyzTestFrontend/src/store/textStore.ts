@@ -102,7 +102,7 @@
 // });
 
 import {defineStore} from "pinia";
-import {analyzeText, downloadAnalysisReport, downloadExcelReport, searchText} from "@/api/textApi";
+import {analyzeText, analyzeWordFile, downloadAnalysisReport, downloadExcelReport, searchText} from "@/api/textApi";
 import {ref} from "vue";
 import {useAlertStore} from "@/store/alertStore";
 
@@ -115,7 +115,7 @@ export const useTextStore = defineStore("textStore", () => {
 
     const charCount = ref(0);
     const wordCount = ref(0);
-    const mainText = ref<string>("");
+    const mainText = ref<string | null | undefined>("");
     const frequencies = ref<WordFrequency[]>([]);
     const searchResults = ref<WordFrequency[]>([]);
     const loading = ref<boolean>(false);
@@ -133,7 +133,7 @@ export const useTextStore = defineStore("textStore", () => {
             charCount.value = result.charCount;
             words.value = result.words;
             frequencies.value = result.frequencies;
-            mainText.value = text;
+            mainText.value = result.text;
         } catch (e: any) {
             alertStore.error(e.error || "Ошибка при анализе текста")
         } finally {
@@ -190,6 +190,26 @@ export const useTextStore = defineStore("textStore", () => {
         }
     }
 
+    async function analyzeWordDocument(file: File) {
+        try {
+            loading.value = true;
+
+            const result = await analyzeWordFile(file);
+
+            wordCount.value = result.wordCount;
+            charCount.value = result.charCount;
+            words.value = result.words;
+            frequencies.value = result.frequencies;
+            mainText.value = result.text;
+
+        } catch (e: any) {
+            alertStore.error(e?.error || "Ошибка при анализе Word файла");
+        } finally {
+            loading.value = false;
+        }
+    }
+
+
     return {
         charCount,
         wordCount,
@@ -201,7 +221,8 @@ export const useTextStore = defineStore("textStore", () => {
         analyze,
         downloadReport,
         downloadExlReport,
-        findWord
+        findWord,
+        analyzeWordDocument,
 
     }
 });

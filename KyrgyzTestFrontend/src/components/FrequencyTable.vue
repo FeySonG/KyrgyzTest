@@ -42,11 +42,11 @@
       </div>
 
       <!-- Таблица частот -->
-      <table class="min-w-10 p-2 border-collapse shadow-lg mb-3">
+      <table class="min-w-10 p-2 border-collapse shadow-lg mb-3 table-fixed">
         <thead class="bg-gray-200">
         <tr>
-          <th class="border px-3 py-2 text-left">Слово</th>
-          <th class="border px-3 py-2 text-left">Частота</th>
+          <th class="border px-3 py-2 text-left w-80">Слово</th>
+          <th class="border px-3 py-2 text-left w-20">Частота</th>
         </tr>
         </thead>
         <tbody>
@@ -55,7 +55,7 @@
             :key="i"
             class="odd:bg-white even:bg-gray-100 hover:bg-blue-50 transition"
         >
-          <td class="border px-3 py-2">{{ f.word }}</td>
+          <td class="border px-3 py-2 break-all">{{ f.word }}</td>
           <td class="border px-3 py-2">{{ f.count }}</td>
         </tr>
         </tbody>
