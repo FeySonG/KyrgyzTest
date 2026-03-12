@@ -56,7 +56,7 @@ public class UserController(ISender sender) : ControllerBase
         );
     }
 
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [HttpPut("change-user-role")]
     public async Task<IActionResult> ChangeRole([FromBody]ChangeUserRoleDto args)
     {
