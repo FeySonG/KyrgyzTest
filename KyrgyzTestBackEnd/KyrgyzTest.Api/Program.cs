@@ -4,6 +4,7 @@ using KyrgyzTest.Application.Abstractions;
 using KyrgyzTest.Application.Extensions;
 using KyrgyzTest.Application.Services;
 using KyrgyzTest.DAL.Extensions;
+using KyrgyzTest.OldDb.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,7 @@ builder.Services.AddControllers().AddJsonOptions(o =>
         .Add(
             new JsonStringEnumConverter()
         );
-});
+}); 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -44,6 +45,7 @@ builder.Services.AddAuthentication().AddCookie("Cookies", options =>
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddOldDbLayer(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
