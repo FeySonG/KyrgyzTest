@@ -11,8 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ae2f1e2a-284d-4c3e-8d79-4933cb7bc6eb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/assets/scrollbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/assets/scrollbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePages/ArchiveSearchPage.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
