@@ -49,9 +49,8 @@ export const useAuthStore = defineStore("auth", {
                 await this.fetchUserFromServer();
                 alert.success("Вы успешно вошли в систему");
             } catch (err: any) {
-                this.error = err.response?.data || "Ошибка авторизации";
+                this.error = "Неверный логин или пароль";
                 alert.error(this.error);
-                throw err;
             } finally {
                 this.loading = false;
             }

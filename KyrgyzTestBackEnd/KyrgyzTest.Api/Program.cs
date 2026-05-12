@@ -26,7 +26,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -46,6 +46,7 @@ builder.Services.AddAuthentication("Cookies")
 #endregion
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddOldDbLayer(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
@@ -55,6 +56,14 @@ using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     initializer.Initialize();
+
+    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+
+    // if (env.IsDevelopment())
+    // {
+    //     var searchSeeder = scope.ServiceProvider.GetRequiredService<MeiliSearchSeeder>();
+    //     await searchSeeder.SeedAsync();
+    // }
 }
 #endregion
 
@@ -63,9 +72,9 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseRouting();       
+app.UseRouting();
 
-app.UseCors("Frontend");   
+app.UseCors("Frontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -74,4 +83,4 @@ app.MapControllers();
 
 app.Run();
 
-// dotnet publish -c Release -o "C:\inetpub\wwwroot\KyrgyzTestAPI"   
+// dotnet publish -c Release -o "C:\inetpub\wwwroot\KyrgyzTestAPI"

@@ -18,6 +18,7 @@
     <ItemGroup>
       <ProjectReference Include="..\KyrgyzTest.Application\KyrgyzTest.Application.csproj" />
       <ProjectReference Include="..\KyrgyzTest.DAL\KyrgyzTest.DAL.csproj" />
+      <ProjectReference Include="..\KyrgyzTest.OldDb\KyrgyzTest.OldDb.csproj" />
     </ItemGroup>
 
 </Project>

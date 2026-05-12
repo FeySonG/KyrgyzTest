@@ -1,78 +1,211 @@
 <template>
   <div class="p-6">
-    <div class="shadow rounded-lg bg-gray-50 border-4 border-primary-light dark:border-primary">
-      <table class="w-full divide-y divide-gray-200 dark:bg-pearl text-gray-800">
-        <thead class="bg-gray-50 dark:bg-gray-800">
-        <tr>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">ФИО</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">Роль</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-400">Логин</th>
-          <th class="px-6 py-3 text-right text-sm font-medium text-gray-400">Действия</th>
-        </tr>
-        </thead>
 
-        <tbody class="divide-y divide-gray-200">
+    <!-- CARD -->
+    <div
+        class="
+        rounded-2xl
+        shadow-xl
+        bg-white
+        dark:bg-gray-900
+        border
+        border-gray-200
+        dark:border-gray-700
+        overflow-visible
+      "
+    >
 
-        <!-- Loading -->
-        <tr v-if="userStore.loading">
-          <td colspan="4" class="px-6 py-8 text-center text-gray-500">
-            Загрузка пользователей...
-          </td>
-        </tr>
+      <!-- HEADER -->
+      <div
+          class="
+          px-6 py-4
+          border-b
+          dark:border-gray-700
+          flex
+          justify-between
+          items-center
+        "
+      >
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          Пользователи
+        </h2>
+      </div>
 
-        <!-- Empty -->
-        <tr v-else-if="userStore.users.length === 0">
-          <td colspan="4" class="px-6 py-8 text-center text-gray-400">
-            Пользователи не найдены
-          </td>
-        </tr>
+      <!-- TABLE -->
+      <div class="custom-scrollbar overflow-x-auto overflow-y-visible">
 
-        <!-- Data -->
-        <tr
-            v-else
-            v-for="user in userStore.users"
-            :key="user.id"
-            class="hover:bg-gray-300"
-        >
-          <td class="px-6 py-4 font-medium text-gray-900">
-            {{ fullName(user) }}
-          </td>
+        <table class="w-full text-l">
 
-          <td class="px-6 py-4 text-gray-700">
-            {{ user.role }}
-          </td>
+          <!-- THEAD -->
+          <thead
+              class="
+              bg-gray-50
+              dark:bg-gray-800
+              text-gray-500
+              dark:text-gray-400
+            "
+          >
+          <tr>
+            <th class="px-6 py-3 text-left">
+              ФИО
+            </th>
 
-          <td class="px-6 py-4 text-gray-700">
-            {{ user.login }}
-          </td>
+            <th class="px-6 py-3 text-left">
+              Роль
+            </th>
 
-          <td class="px-6 py-4 text-right">
-            <DropdownMenu>
-              <template #menu>
-                <button
-                    class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                    @click="openEditRole(user)"
-                >
-                  Изменить роль
-                </button>
+            <th class="px-6 py-3 text-left">
+              Логин
+            </th>
 
-                <button
-                    class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                    @click="confirmDelete(user)"
-                >
-                  Удалить
-                </button>
-              </template>
-            </DropdownMenu>
-          </td>
-        </tr>
+            <th class="px-6 py-3 text-right">
+              Действия
+            </th>
+          </tr>
+          </thead>
 
-        </tbody>
-      </table>
+          <!-- TBODY -->
+          <tbody class="divide-y dark:divide-gray-700">
+
+          <!-- Loading -->
+          <tr v-if="userStore.loading">
+            <td
+                colspan="4"
+                class="px-6 py-10 text-center text-gray-400"
+            >
+              ⏳ Загрузка пользователей...
+            </td>
+          </tr>
+
+          <!-- Empty -->
+          <tr v-else-if="userStore.users.length === 0">
+            <td
+                colspan="4"
+                class="px-6 py-10 text-center text-gray-400"
+            >
+              Пользователи не найдены
+            </td>
+          </tr>
+
+          <!-- DATA -->
+          <tr
+              v-else
+              v-for="user in userStore.users"
+              :key="user.id"
+              class="
+              transition-all
+              duration-200
+              hover:bg-gray-50
+              dark:hover:bg-gray-800
+            "
+          >
+
+            <!-- NAME -->
+            <td
+                class="
+                px-6 py-4
+                font-medium
+                text-gray-800
+                dark:text-gray-200
+              "
+            >
+              {{ fullName(user) }}
+            </td>
+
+            <!-- ROLE -->
+            <td class="px-6 py-4">
+              <span
+                  class="
+                  px-2 py-1
+                  rounded-lg
+                  text-xs
+                  font-medium
+                "
+                  :class="
+                  user.role === 'Admin'
+                    ? 'bg-red-100 text-red-600'
+                    : 'bg-blue-100 text-blue-600'
+                "
+              >
+                {{ user.role }}
+              </span>
+            </td>
+
+            <!-- LOGIN -->
+            <td
+                class="
+                px-6 py-4
+                text-gray-600
+                dark:text-gray-300
+              "
+            >
+              {{ user.login }}
+            </td>
+
+            <!-- ACTIONS -->
+            <td
+                class="
+                px-6 py-4
+                text-right
+                relative
+              "
+            >
+              <div class="relative inline-block z-50">
+
+                <DropdownMenu>
+
+                  <template #menu>
+
+                    <button
+                        class="
+                        block
+                        w-full
+                        text-left
+                        px-4 py-2
+                        text-sm
+                        hover:bg-gray-100
+                        dark:hover:bg-gray-700
+                      "
+                        @click="openEditRole(user)"
+                    >
+                      Изменить роль
+                    </button>
+
+                    <button
+                        class="
+                        block
+                        w-full
+                        text-left
+                        px-4 py-2
+                        text-sm
+                        text-red-600
+                        hover:bg-red-50
+                        dark:hover:bg-red-900/30
+                      "
+                        @click="confirmDelete(user)"
+                    >
+                      Удалить
+                    </button>
+
+                  </template>
+
+                </DropdownMenu>
+
+              </div>
+            </td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <!-- Drawer -->
-    <Drawer v-model="drawerOpen" :mode="drawerTitle">
+    <!-- DRAWER -->
+    <Drawer
+        v-model="drawerOpen"
+        :mode="drawerTitle"
+    >
       <component
           :is="drawerComponent"
           :user="selectedUser"
@@ -81,19 +214,21 @@
       />
     </Drawer>
 
-    <!-- Confirm delete -->
+    <!-- CONFIRM -->
     <ConfirmWindow
         :visible="confirmVisible"
         title="Подтверждение удаления"
-        :message="userToDelete
-        ? `Вы уверены, что хотите удалить пользователя ${fullName(userToDelete)}?`
-        : ''"
+        :message="
+        userToDelete
+          ? `Вы уверены, что хотите удалить пользователя ${fullName(userToDelete)}?`
+          : ''
+      "
         @confirm="onConfirmDelete"
         @cancel="onCancelDelete"
     />
+
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";

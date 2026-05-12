@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router"; // путь к твоему router/index.ts
 import { useAuthStore } from "@/store/auth";
+import "./assets/scrollbar.css";
 
 import './assets/main.css';
 

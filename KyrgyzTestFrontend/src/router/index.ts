@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+
 import HomePage from "@/pages/HomePage.vue";
 import LoginPage from "@/pages/LoginPage.vue";
 import RegisterPage from "@/pages/RegisterForm.vue";
@@ -20,7 +21,23 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/home",
         component: HomePage,
-        meta: { requiresAuth: true },
+        meta: {requiresAuth: true},
+    },
+    {
+        path: "/archive",
+        component: ArchivePage,
+        meta: {requiresAuth: true},
+        children: [
+            {
+                path: "search",
+                component: ArchiveSearchPage,
+            },
+            {
+                path: "student/:id",   // 👈 ВОТ ЭТО ДОБАВЬ
+                name: "StudentResults",
+                component: TestResultPage,
+            },
+        ],
     },
     {
         path: "/profile",
@@ -49,7 +66,7 @@ const router = createRouter({
     routes,
 });
 
-// 🔹 Guard проверяет store, store уже синхронизирован в main.ts
+//  Глобальный guard
 router.beforeEach((to, from, next) => {
     const authStore = useAuthStore();
 
