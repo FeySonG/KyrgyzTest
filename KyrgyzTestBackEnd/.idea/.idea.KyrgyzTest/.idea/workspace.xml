@@ -10,39 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae2f1e2a-284d-4c3e-8d79-4933cb7bc6eb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbTestResultController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Abstractions/MeilisearchAbstractions/ISearchService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Abstractions/OldDbAbstractions/Regulations/IRegulationRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Contracts/OldDbs/Regulations/RegulationDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Contracts/OldDbs/Students/TestStudentsDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/Regulations/GetByIdRegulation/GetByIdRegulationQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/Regulations/GetByIdRegulation/GetByIdRegulationQueryHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Repositories/Meilisearchs/MeiliSearchService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Repositories/Regulations/RegulationRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Seeds/MeiliSearchSeeder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/api/archiveApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/assets/scrollbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePages/ArchiveSearchPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePages/TestResultPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/store/archiveStore.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/KtOldDbErrorCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/KtOldDbErrorCode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.OldDb/Extensions/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Extensions/DependencyInjection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.OldDb/KyrgyzTest.OldDb.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/KyrgyzTest.OldDb.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/Drawer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/BaseCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/BaseCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/InfoRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/InfoRow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/layouts/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/layouts/MainLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/AdminPages/AdminUsersPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/AdminPages/AdminUsersPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/UserProfilePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/UserProfilePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/store/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/store/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/sidebarItems.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/sidebarItems.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/assets/scrollbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/assets/scrollbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePages/ArchiveSearchPage.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,6 +223,17 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
