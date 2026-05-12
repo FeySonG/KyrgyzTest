@@ -5,6 +5,7 @@ using KyrgyzTest.Application.Extensions;
 using KyrgyzTest.Application.Services;
 using KyrgyzTest.DAL.Extensions;
 using KyrgyzTest.OldDb.Extensions;
+using KyrgyzTest.OldDb.Seeds;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +56,14 @@ using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     initializer.Initialize();
+    
+    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+
+    // if (env.IsDevelopment()) 
+    // {
+    //     var searchSeeder = scope.ServiceProvider.GetRequiredService<MeiliSearchSeeder>();
+    //     await searchSeeder.SeedAsync();
+    // }
 }
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,11 @@
+using KyrgyzTest.Application.Abstractions.MeilisearchAbstractions;
+using KyrgyzTest.Application.Abstractions.OldDbAbstractions.Regulations;
 using KyrgyzTest.Application.Abstractions.OldDbAbstractions.TestResults;
 using KyrgyzTest.OldDb.Models;
+using KyrgyzTest.OldDb.Repositories.Meilisearchs;
+using KyrgyzTest.OldDb.Repositories.Regulations;
 using KyrgyzTest.OldDb.Repositories.TestResultRepository;
+using KyrgyzTest.OldDb.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,5 +30,8 @@ public static class DependencyInjection
     private static void InitRepositories(this IServiceCollection services)
     {
         services.AddScoped<ITestResultRepository, TestResultRepository>();
+        services.AddScoped<IRegulationRepository, RegulationRepository>();
+        services.AddScoped<ISearchService, MeiliSearchService>();
+        services.AddScoped<MeiliSearchSeeder>();
     }
 }

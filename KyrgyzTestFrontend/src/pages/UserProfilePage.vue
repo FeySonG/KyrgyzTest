@@ -11,7 +11,7 @@
                    hover:bg-red-600 hover:text-pearl"
           >
             <span class="flex items-center gap-2">
-              <ArrowLeftStartOnRectangleIcon class="w-6 h-6" />
+              <ArrowLeftStartOnRectangleIcon class="w-6 h-6"/>
               <span>Выйти</span>
             </span>
           </button>
@@ -19,45 +19,51 @@
       </Sidebar>
 
       <!-- Content -->
-      <div class="w-full mx-auto py-8 px-4">
-        <h1 class="text-2xl font-semibold mb-6 dark:text-pearl">
-          Профиль пользователя {{ user?.firstName }}
-        </h1>
+      <div class="flex-1 flex justify-center py-10 px-6">
 
-        <BaseCard width="w-1/2">
-          <InfoRow label="Имя">{{ user?.firstName }}</InfoRow>
-          <InfoRow label="Фамилия">{{ user?.lastName }}</InfoRow>
-          <InfoRow label="Отчество">{{ user?.middleName }}</InfoRow>
-          <InfoRow label="Логин">{{ user?.login }}</InfoRow>
-          <InfoRow label="Роль">{{ user?.role }}</InfoRow>
+        <div class="w-full max-w-2xl">
 
-          <template #actions>
-            <DropdownMenu>
-              <template #menu>
-                <button
-                    class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
-                    @click="openEditUser"
-                >
-                  Редактировать ФИО
-                </button>
+          <h1 class="text-2xl font-semibold mb-6 text-center dark:text-pearl">
+            Профиль пользователя {{ user?.firstName }}
+          </h1>
 
-                <button
-                    class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
-                    @click="openChangeLogin"
-                >
-                  Изменить логин
-                </button>
+          <BaseCard width="w-full">
+            <InfoRow label="Имя">{{ user?.firstName }}</InfoRow>
+            <InfoRow label="Фамилия">{{ user?.lastName }}</InfoRow>
+            <InfoRow label="Отчество">{{ user?.middleName }}</InfoRow>
+            <InfoRow label="Логин">{{ user?.login }}</InfoRow>
+            <InfoRow label="Роль">{{ user?.role }}</InfoRow>
 
-                <button
-                    class="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
-                    @click="openChangePassword"
-                >
-                  Изменить пароль
-                </button>
-              </template>
-            </DropdownMenu>
-          </template>
-        </BaseCard>
+            <template #actions>
+              <DropdownMenu>
+                <template #menu>
+                  <button
+                      class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                      @click="openEditUser"
+                  >
+                    Редактировать ФИО
+                  </button>
+
+                  <button
+                      class="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                      @click="openChangeLogin"
+                  >
+                    Изменить логин
+                  </button>
+
+                  <button
+                      class="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                      @click="openChangePassword"
+                  >
+                    Изменить пароль
+                  </button>
+                </template>
+              </DropdownMenu>
+            </template>
+          </BaseCard>
+
+        </div>
+
       </div>
 
       <!-- Drawer -->
@@ -76,8 +82,8 @@
 
 <script setup lang="ts">
 import {ref, shallowRef} from "vue";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
+import {storeToRefs} from "pinia";
+import {useRouter} from "vue-router";
 
 import MainLayout from "@/layouts/MainLayout.vue";
 import Sidebar from "@/components/Sidebar.vue";
@@ -89,13 +95,13 @@ import InfoRow from "@/components/ui/cards/InfoRow.vue";
 import UserEditForm from "@/components/users/UserEditForm.vue";
 import UserChangePasswordForm from "@/components/users/UserChangePasswordForm.vue";
 
-import { ArrowLeftStartOnRectangleIcon } from "@heroicons/vue/16/solid";
-import { userProfileItems } from "@/types/sidebarItems";
-import type { CurrentUser } from "@/types/types";
+import {ArrowLeftStartOnRectangleIcon} from "@heroicons/vue/16/solid";
+import {userProfileItems} from "@/types/sidebarItems";
+import type {CurrentUser} from "@/types/types";
 import type {ChangeUserLoginDto, ChangeUserNameDto, ChangeUserPasswordDto} from "@/types/userTypes/userType";
 
-import { useAuthStore } from "@/store/auth";
-import { useUserStore } from "@/store/userStore";
+import {useAuthStore} from "@/store/auth";
+import {useUserStore} from "@/store/userStore";
 import ChangeUserLoginForm from "@/components/users/ChangeUserLoginForm.vue";
 
 type DrawerType = "edit-user" | "change-password" | "change-login" | null;
@@ -105,7 +111,7 @@ const authStore = useAuthStore();
 const router = useRouter();
 const userStore = useUserStore();
 
-const { user } = storeToRefs(authStore);
+const {user} = storeToRefs(authStore);
 
 const drawerOpen = ref(false);
 const drawerType = ref<DrawerType>(null);
@@ -135,8 +141,8 @@ function openChangePassword() {
   drawerOpen.value = true;
 }
 
-function openChangeLogin(){
-  if(!user.value) return;
+function openChangeLogin() {
+  if (!user.value) return;
 
   drawerTitle.value = "Изменить логин";
   selectedUser.value = user.value;

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
 
 import HomePage from "@/pages/HomePage.vue";
 import LoginPage from "@/pages/LoginPage.vue";
@@ -6,8 +6,11 @@ import RegisterPage from "@/pages/RegisterForm.vue";
 import AdminPage from "@/pages/AdminPage.vue";
 import AdminUsersPage from "@/pages/AdminPages/AdminUsersPage.vue";
 import UserProfilePage from "@/pages/UserProfilePage.vue";
+import ArchivePage from "@/pages/ArchivePage.vue";
 
-import { useAuthStore } from "@/store/auth";
+import {useAuthStore} from "@/store/auth";
+import ArchiveSearchPage from "@/pages/ArchivePages/ArchiveSearchPage.vue";
+import TestResultPage from "@/pages/ArchivePages/TestResultPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -21,17 +24,33 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/home",
         component: HomePage,
-        meta: { requiresAuth: true },
+        meta: {requiresAuth: true},
+    },
+    {
+        path: "/archive",
+        component: ArchivePage,
+        meta: {requiresAuth: true},
+        children: [
+            {
+                path: "search",
+                component: ArchiveSearchPage,
+            },
+            {
+                path: "student/:id",   // 👈 ВОТ ЭТО ДОБАВЬ
+                name: "StudentResults",
+                component: TestResultPage,
+            },
+        ],
     },
     {
         path: "/profile",
         component: UserProfilePage,
-        meta: { requiresAuth: true },
+        meta: {requiresAuth: true},
     },
     {
         path: "/admin",
         component: AdminPage,
-        meta: { requiresAuth: true, requiresAdmin: true },
+        meta: {requiresAuth: true, requiresAdmin: true},
         children: [
             {
                 path: "users",
@@ -50,7 +69,7 @@ const router = createRouter({
     routes,
 });
 
-// 🔒 Глобальный guard (ОН У ТЕБЯ УЖЕ НОРМАЛЬНЫЙ)
+//  Глобальный guard
 router.beforeEach((to, from, next) => {
     const authStore = useAuthStore();
 

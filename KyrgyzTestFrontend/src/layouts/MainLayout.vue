@@ -1,21 +1,44 @@
 <template>
   <div class="min-h-screen flex flex-col bg-background text-text-main">
-    <!-- Header -->
-    <header class="bg-primary dark:bg-primary-dark text-pearl py-4 shadow-md">
-      <div class="container max-w-full px-4 flex justify-between">
-        <div class="w-52 flex items-center">
-          <RouterLink to="/home" class="hover:no-underline ">
 
-            <h1 class="text-xl font-semibold text-pearl">🌿 Кыргызтест</h1>
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50
+                   bg-primary/95 backdrop-blur
+                   dark:bg-primary-dark/95
+                   text-pearl
+                   shadow-lg">
+
+      <div class="max-w-full mx-auto px-6 py-3 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <RouterLink to="/home" class="flex items-center gap-2 group">
+          <h1 class="text-xl font-semibold tracking-wide
+                     group-hover:scale-105 transition">
+            🌿 Кыргызтест
+          </h1>
+        </RouterLink>
+
+        <!-- NAV -->
+        <nav class="flex items-center gap-2 text-l">
+
+          <RouterLink
+              v-if="user?.role === 'User' || user?.role === 'Admin'"
+              to="/archive"
+              class="px-4 py-2 rounded-xl
+                   transition-all duration-200
+                   hover:bg-white/10
+                   hover:scale-105"
+          >
+            Архив
           </RouterLink>
-        </div>
-        <div class="flex justify-between items-center text-lg">
+
           <RouterLink
               v-if="user?.role === 'User' || user?.role === 'Admin'"
               to="/home"
-              class="p-3 rounded-xl
-           transition-colors duration-500 ease-in-out
-           hover:bg-gray-100 dark:hover:bg-primary/20"
+              class="px-4 py-2 rounded-xl
+                   transition-all duration-200
+                   hover:bg-white/10
+                   hover:scale-105"
           >
             Частотный словарь
           </RouterLink>
@@ -23,43 +46,55 @@
           <RouterLink
               v-if="user?.role === 'Admin'"
               to="/admin/users"
-              class="p-3 rounded-xl
-           transition-colors duration-500 ease-in-out
-           hover:bg-gray-100 dark:hover:bg-primary/20"
+              class="px-4 py-2 rounded-xl
+                   transition-all duration-200
+                   hover:bg-white/20
+                   hover:scale-105"
           >
             Админ
           </RouterLink>
-        </div>
 
+        </nav>
 
-        <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- RIGHT SIDE -->
+        <div class="flex items-center gap-3">
+
           <ThemeToggle/>
 
+          <!-- PROFILE -->
           <RouterLink to="/profile">
-            <div class="w-12 h-12
-                        rounded-full
+            <div class="w-11 h-11 rounded-full
                         flex items-center justify-center
-                        transition-all duration-500 ease-out
-                        hover: hover:scale-110
-                      dark:hover:bg-primary
-                        ">
-              <UserCircleIcon class="w-8 h-8 text-pearl"/>
+                        hover:bg-primary
+                        hover:scale-110
+                        transition-all duration-200
+                        shadow-sm">
+              <UserCircleIcon class="w-7 h-7 text-pearl"/>
             </div>
           </RouterLink>
 
         </div>
+
       </div>
     </header>
 
-    <!-- Main content -->
-    <main class="min-h-screen dark:bg-warm-gray">
+    <!-- MAIN -->
+    <main class="flex-1  w-full
+                 from-transparent
+                 ">
       <slot/>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-primary-dark text-white py-3 text-center text-sm">
-      © {{ new Date().getFullYear() }} KyrgyzTest system
+    <!-- FOOTER -->
+    <footer class="bg-primary-dark/95 text-white
+                   py-4 text-center text-sm
+                   border-t border-white/10
+                   shadow-inner">
+      <div class="opacity-80">
+        © {{ new Date().getFullYear() }} KyrgyzTest system
+      </div>
     </footer>
+
   </div>
 </template>
 <script setup lang="ts">

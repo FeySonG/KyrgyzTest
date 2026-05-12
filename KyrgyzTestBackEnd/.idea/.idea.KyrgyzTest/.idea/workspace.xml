@@ -10,77 +10,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae2f1e2a-284d-4c3e-8d79-4933cb7bc6eb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Abstractions/OldDbAbstractions/IOldDbRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/KtOldDbErrorCode.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Extensions/DependencyInjection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/KyrgyzTest.OldDb.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/LegacyDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/AuthorTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/BlankTestVariant.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/DataOfQuestion.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/DatabaseVersion.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/ListOfQuestion.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/Localization.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/MmPole.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/MonthKg.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/OtchetBlank.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PAccount.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PAccountProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PAccountRole.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PCompany.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PCompanyProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PEvent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PGroup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PGroupProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PGroupRespondent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PGroupRespondentProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PPaymentAccount.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PPaymentOperation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PPropertySet.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PPropertyValue.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PTestSetting.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/PTrainingCost.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/Regulation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/RegulationLog.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/RrnkTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/Statistic.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/Temp.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/TestResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/TestResultBallInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/TestStorage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/UserAnswer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank2.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank3.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank4.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank5.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank6.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank7.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VBlank7Advanced.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VStatistik.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest2.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest3.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest4.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest4Advanced.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest5.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VTest5Advanced.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Models/VUserAnswersUpdate.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Services/UnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FrequencyDictionary/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Api/KyrgyzTest.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.Api/KyrgyzTest.Api.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbTestResultController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Abstractions/MeilisearchAbstractions/ISearchService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Abstractions/OldDbAbstractions/Regulations/IRegulationRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Contracts/OldDbs/Regulations/RegulationDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Contracts/OldDbs/Students/TestStudentsDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/Regulations/GetByIdRegulation/GetByIdRegulationQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/Regulations/GetByIdRegulation/GetByIdRegulationQueryHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Repositories/Meilisearchs/MeiliSearchService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Repositories/Regulations/RegulationRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Seeds/MeiliSearchSeeder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/api/archiveApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/assets/scrollbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePages/ArchiveSearchPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/ArchivePages/TestResultPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/store/archiveStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KyrgyzTest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbController.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/KyrgyzTest.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KyrgyzTest.sln" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/KtOldDbErrorCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/KtOldDbErrorCode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KyrgyzTest.OldDb/Extensions/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/Extensions/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KyrgyzTest.OldDb/KyrgyzTest.OldDb.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/KyrgyzTest.OldDb/KyrgyzTest.OldDb.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/Drawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/BaseCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/BaseCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/InfoRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/components/ui/cards/InfoRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/layouts/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/layouts/MainLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/AdminPages/AdminUsersPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/AdminPages/AdminUsersPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/UserProfilePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/pages/UserProfilePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/store/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/store/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/sidebarItems.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/sidebarItems.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../KyrgyzTestFrontend/src/types/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,12 +73,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0df98c91a6684adb83eeb3d87e3ad1c615000/b5/952fc277/RequestHandlerWrapperImpl`2.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1dbc3ecefaba43d395cb97adf248fc7a1de910/0b/f43b67ee/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4e4050fe60584c9bad63740fb076efab1de938/24/0bf4a36e/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8abdcbb5fcc64df6970a7bc170085c0b1de908/94/4747ad7a/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/376e9cf87e9f457a80b9fd19d675c52dc90930/92/02fad1c6/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KyrgyzTest.Api/Controllers/AuthController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/KyrgyzTest.Api/Controllers/OldDbTestResultController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KyrgyzTest.Api/Controllers/UserController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KyrgyzTest.Application/Abstractions/OldDbAbstractions/TestResults/ITestResultRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/KyrgyzTest.Application/Contracts/OldDbs/TestResults/TestResultBallInfoDto.cs" root0="FORCE_HIGHLIGHTING" />
@@ -149,7 +108,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;.NET Launch Settings Profile.KyrgyzTest.Api: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.KyrgyzTest.Api: https.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.KyrgyzTest.Api: https.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;KyrgyzTestOldDb&quot;,
@@ -209,6 +169,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ae2f1e2a-284d-4c3e-8d79-4933cb7bc6eb" name="Changes" comment="" />
@@ -268,6 +229,23 @@
       <workItem from="1774347466579" duration="84000" />
       <workItem from="1774347565492" duration="3239000" />
       <workItem from="1774351241034" duration="157000" />
+      <workItem from="1774495611297" duration="47000" />
+      <workItem from="1774495678612" duration="4210000" />
+      <workItem from="1774584210412" duration="6284000" />
+      <workItem from="1774843999356" duration="14712000" />
+      <workItem from="1774927805272" duration="13905000" />
+      <workItem from="1775014746307" duration="1020000" />
+      <workItem from="1775016633487" duration="581000" />
+      <workItem from="1775017246209" duration="1008000" />
+      <workItem from="1775019718203" duration="4255000" />
+      <workItem from="1775107057238" duration="1582000" />
+      <workItem from="1775187655150" duration="2354000" />
+      <workItem from="1775446329187" duration="19013000" />
+      <workItem from="1775532123927" duration="731000" />
+      <workItem from="1775621750624" duration="5038000" />
+      <workItem from="1775706750876" duration="4618000" />
+      <workItem from="1775796942230" duration="778000" />
+      <workItem from="1778471290099" duration="15099000" />
     </task>
     <servers />
   </component>
@@ -281,18 +259,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/KyrgyzTest.Application/TextWorks/WordAnalyze/WordAnalyzeQueryHandler.cs</url>
           <line>10</line>
@@ -305,6 +271,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/KyrgyzTest.Application/Models/KTOldDbs/TestResults/GetByStudentId/GetStudentResultsQueryHandler.cs</url>
+          <line>16</line>
+          <properties documentPath="C:\projects\KT\KyrgyzTest\KyrgyzTest\KyrgyzTestBackEnd\KyrgyzTest.Application\Models\KTOldDbs\TestResults\GetByStudentId\GetStudentResultsQueryHandler.cs" containingFunctionPresentation="Method 'Handle'">
+            <startOffsets>
+              <option value="743" />
+            </startOffsets>
+            <endOffsets>
+              <option value="744" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
