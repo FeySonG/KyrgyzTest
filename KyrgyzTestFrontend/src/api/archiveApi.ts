@@ -9,7 +9,7 @@ import {
 } from "@/types/types";
 
 const api = axios.create({
-    baseURL: "http://localhost:5227/api-archive",
+    baseURL: `${import.meta.env.VITE_ARCHIVE_API_URL}/api-archive`,
     withCredentials: true,
 })
 

@@ -6,8 +6,10 @@ import RegisterPage from "@/pages/RegisterForm.vue";
 import AdminPage from "@/pages/AdminPage.vue";
 import AdminUsersPage from "@/pages/AdminPages/AdminUsersPage.vue";
 import UserProfilePage from "@/pages/UserProfilePage.vue";
-
+import ArchivePage from "@/pages/ArchivePage.vue";
 import { useAuthStore } from "@/store/auth";
+import ArchiveSearchPage from "@/pages/ArchivePages/ArchiveSearchPage.vue";
+import TestResultPage from "@/pages/ArchivePages/TestResultPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {

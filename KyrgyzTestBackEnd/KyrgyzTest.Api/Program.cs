@@ -4,6 +4,7 @@ using KyrgyzTest.Application.Abstractions;
 using KyrgyzTest.Application.Extensions;
 using KyrgyzTest.Application.Services;
 using KyrgyzTest.DAL.Extensions;
+using KyrgyzTest.OldDb.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +70,7 @@ using (var scope = app.Services.CreateScope())
 
 // ================= PIPELINE =================
 
+app.UseHttpsRedirection();
 app.UseSwagger();
 app.UseSwaggerUI();
 
