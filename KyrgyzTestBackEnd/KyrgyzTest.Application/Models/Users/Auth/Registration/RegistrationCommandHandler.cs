@@ -41,4 +41,4 @@ public class RegistrationCommandHandler(
             Role = UserRole.User
         };
     }
-}
+}dcdc
