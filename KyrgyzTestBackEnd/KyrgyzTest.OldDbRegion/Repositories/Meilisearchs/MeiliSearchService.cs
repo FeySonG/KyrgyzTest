@@ -2,9 +2,9 @@ using KyrgyzTest.Application.Abstractions.MeilisearchAbstractions;
 using KyrgyzTest.Application.Contracts.OldDbs.TestResults;
 using Meilisearch;
 
-namespace KyrgyzTest.OldDb.Repositories.Meilisearchs;
+namespace KyrgyzTest.OldDbRegion.Repositories.Meilisearchs;
 
-public class MeiliSearchService : ISearchService
+public class MeiliSearchService : IRegionSearchService
 {
     private readonly MeilisearchClient _client;
 
@@ -13,12 +13,13 @@ public class MeiliSearchService : ISearchService
         _client = new MeilisearchClient("http://localhost:7700");
     }
 
-    public async Task<List<TestResultDto>> SearchAsync(string query)
+    public async Task<List<TestResultDto>> RegionSearchAsync(string query)
     {
         var result = await _client
-            .Index("testResults")
+            .Index("testResultsRegion")
             .SearchAsync<TestResultDto>(query);
 
         return result.Hits.ToList();
     }
+
 }

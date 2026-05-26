@@ -1,15 +1,15 @@
-namespace KyrgyzTest.OldDb.Seeds;
-
 using Meilisearch;
 using Microsoft.EntityFrameworkCore;
 
-public class MeiliSearchSeeder(LegacyDbContext dbContext)
+namespace KyrgyzTest.OldDbRegion.Seeds;
+
+public class MeiliSearchSeeder(LegacyDbRegionContext dbRegionContext)
 {
     private readonly MeilisearchClient _client = new("http://localhost:7700");
 
     public async Task SeedAsync()
     {
-        var index = _client.Index("testResults");
+        var index = _client.Index("testResultsRegion");
 
         // await index.UpdateSearchableAttributesAsync(new[]
         // {
@@ -17,11 +17,11 @@ public class MeiliSearchSeeder(LegacyDbContext dbContext)
         // });
 
         var batchSize = 1000;
-        var total = await dbContext.TestResults.CountAsync();
+        var total = await dbRegionContext.TestResults.CountAsync();
 
         for (int i = 0; i < total; i += batchSize)
         {
-            var batch = await dbContext.TestResults
+            var batch = await dbRegionContext.TestResults
                 .AsNoTracking()
                 .Skip(i)
                 .Take(batchSize)

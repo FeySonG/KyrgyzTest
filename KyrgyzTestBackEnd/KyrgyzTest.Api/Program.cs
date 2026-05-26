@@ -6,6 +6,7 @@ using KyrgyzTest.Application.Services;
 using KyrgyzTest.DAL.Extensions;
 using KyrgyzTest.OldDb.Extensions;
 using KyrgyzTest.OldDb.Seeds;
+using KyrgyzTest.OldDbRegion.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,7 @@ builder.Services.AddAuthentication().AddCookie("Cookies", options =>
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddOldDbLayer(builder.Configuration);
+builder.Services.AddOldDbRegionLayer(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
