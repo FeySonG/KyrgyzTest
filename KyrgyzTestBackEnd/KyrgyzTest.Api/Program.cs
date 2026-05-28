@@ -5,6 +5,8 @@ using KyrgyzTest.Application.Extensions;
 using KyrgyzTest.Application.Services;
 using KyrgyzTest.DAL.Extensions;
 using KyrgyzTest.OldDb.Extensions;
+using KyrgyzTest.OldDb.Seeds;
+using KyrgyzTest.OldDbRegion.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +50,7 @@ builder.Services.AddAuthentication("Cookies")
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddOldDbLayer(builder.Configuration);
+builder.Services.AddOldDbRegionLayer(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
@@ -79,6 +82,9 @@ app.UseRouting();
 app.UseCors("Frontend");
 
 app.UseAuthentication();
+
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
 
 app.MapControllers();

@@ -100,19 +100,16 @@
 <script setup lang="ts">
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { useArchiveStore } from "@/store/archiveStore";
-import { ref } from "vue";
+import {computed, ref} from "vue";
 import router from "@/router";
 
 const resultStore = useArchiveStore();
 const query = ref("");
-const isSearched = ref(false);
+const isSearched = computed(() => {
+  return resultStore.studentNames.length > 0;
+});
 
 const goToStudent = (id: number) => {
-  // resultStore.testResults.forEach((result) => {
-  //   if (result.idStudent == id) { resultStore.getRegulation(result.idRegulation) }
-  // })
-  // resultStore.getStudentResult(id);
-
   router.push({
     name: "StudentResults",
     params: { id },
@@ -124,7 +121,5 @@ const searchTestResult = async () => {
 
   await resultStore.searchResult(query.value);
 
-
-  isSearched.value = true;
 };
 </script>

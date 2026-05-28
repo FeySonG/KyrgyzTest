@@ -86,7 +86,7 @@ const formatDate = (dateString: string) => {
         >
         <tr>
           <th class="px-5 py-3 font-medium">
-            Место тестирования
+            Организация
           </th>
 
           <th class="px-5 py-3 font-medium">
@@ -159,7 +159,7 @@ const formatDate = (dateString: string) => {
                 dark:border-gray-700
               "
             >
-              {{ item.nameFacultet }}
+              {{ item.nameGroup }}
             </td>
 
             <td

@@ -23,7 +23,7 @@ export const useArchiveStore = defineStore("archiveStore", () => {
             searchResults.value = result.testResults
             studentNames.value =  result.students
 
-        } catch (e: any) {
+        } catch (e: any ) {
             alertStore.error(e.error || "Ошибка при поиске")
         } finally {
             loading.value = false;

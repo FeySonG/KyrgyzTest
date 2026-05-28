@@ -47,7 +47,6 @@ export const useAuthStore = defineStore("auth", {
             try {
                 await loginUser({ login, password });
                 await this.fetchUserFromServer();
-                alert.success("Вы успешно вошли в систему");
             } catch (err: any) {
                 this.error = "Неверный логин или пароль";
                 alert.error(this.error);

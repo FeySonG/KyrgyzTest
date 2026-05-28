@@ -4,6 +4,7 @@ using KyrgyzTest.Application.Models.KTOldDbs.TestResults.GetById;
 using KyrgyzTest.Application.Models.KTOldDbs.TestResults.GetByStudentId;
 using KyrgyzTest.Application.Models.KTOldDbs.TestResults.SearchResultByName;
 using KyrgyzTest.OldDb;
+using KyrgyzTest.OldDbRegion;
 using MediatR;
 using Meilisearch;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,8 @@ namespace KyrgyzTest.Api.Controllers;
 
 [Route("api-archive")]
 public class OldDbTestResultController(ISender sender,
-                                LegacyDbContext dbContext) : ControllerBase
+                                LegacyDbContext dbContext,
+                                LegacyDbRegionContext dbRegionContext) : ControllerBase
 {
     [Authorize]
     [HttpGet("get-by-{id}")]
@@ -69,7 +71,7 @@ public class OldDbTestResultController(ISender sender,
     public async Task<IActionResult> InitSearch()
     {
         var client = new MeilisearchClient("http://localhost:7700");
-        var index = client.Index("students");
+        var index = client.Index("testResults");
 
         var batchSize = 1000;
         var total = await dbContext.TestResults.CountAsync();
@@ -77,6 +79,29 @@ public class OldDbTestResultController(ISender sender,
         for (int i = 0; i < total; i += batchSize)
         {
             var batch = await dbContext.TestResults
+                .AsNoTracking()
+                .Skip(i)
+                .Take(batchSize)
+                .ToListAsync();
+
+            await index.AddDocumentsAsync(batch);
+        }
+
+        return Ok("Indexed");
+    }
+    
+    [HttpPost("init-search-region")]
+    public async Task<IActionResult> InitSearchRegion()
+    {
+        var client = new MeilisearchClient("http://localhost:7700");
+        var index = client.Index("testResultsRegion");
+
+        var batchSize = 1000;
+        var total = await dbRegionContext.TestResults.CountAsync();
+
+        for (int i = 0; i < total; i += batchSize)
+        {
+            var batch = await dbRegionContext.TestResults
                 .AsNoTracking()
                 .Skip(i)
                 .Take(batchSize)
