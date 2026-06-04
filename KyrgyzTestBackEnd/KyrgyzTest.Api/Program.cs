@@ -41,9 +41,10 @@ builder.Services.AddScoped<IHttpAccessorService, HttpAccessorService>();
 builder.Services.AddAuthentication("Cookies")
     .AddCookie("Cookies", options =>
     {
+        options.Cookie.Path = "/";
         options.Cookie.HttpOnly = true;
         options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SameSite = SameSiteMode.Lax;
     });
 
 #endregion
@@ -89,6 +90,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UsePathBase("/api");
+
 app.Run();
 
 // dotnet publish -c Release -o "C:\inetpub\wwwroot\KyrgyzTestAPI"
+
+//#0pen2017!!!
