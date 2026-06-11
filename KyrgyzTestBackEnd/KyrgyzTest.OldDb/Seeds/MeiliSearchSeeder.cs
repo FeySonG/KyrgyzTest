@@ -11,11 +11,6 @@ public class MeiliSearchSeeder(LegacyDbContext dbContext)
     {
         var index = _client.Index("testResults");
 
-        // await index.UpdateSearchableAttributesAsync(new[]
-        // {
-        //     "NameStudent"
-        // });
-
         var batchSize = 1000;
         var total = await dbContext.TestResults.CountAsync();
 

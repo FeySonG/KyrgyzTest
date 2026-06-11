@@ -36,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
                 component: ArchiveSearchPage,
             },
             {
-                path: "student/:id",   // 👈 ВОТ ЭТО ДОБАВЬ
+                path: "student",   // 👈 ВОТ ЭТО ДОБАВЬ
                 name: "StudentResults",
                 component: TestResultPage,
             },

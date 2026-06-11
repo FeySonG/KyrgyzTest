@@ -37,8 +37,15 @@ export interface ResultSearch {
 }
 
 export interface TestStudent {
+    searchStudentId: string
     studentId: number;
     studentName: string;
+    source: string;
+}
+
+export interface GetByStudentIdArgs {
+    idStudent: number;
+    source: string;
 }
 
 export interface StudentResultResponse {
@@ -46,7 +53,7 @@ export interface StudentResultResponse {
 }
 export interface SearchResult {
     students: TestStudent[];
-    testResults: TestResultDto[];
+    testResults: TestResultSearchDto[];
 }
 
 export interface TestResultDto {
@@ -90,6 +97,21 @@ export interface TestResultDto {
 
     isHandled: boolean;
     countQuest: number;
+}
+
+export interface TestResultSearchDto {
+    searchId: string;
+    source: string;
+
+    id: number;
+    idStudent: number;
+
+    nameStudent: string;
+    nameGroup: string;
+    nameFacultet: string;
+    nameDiscipline: string;
+
+    generateDate: string;
 }
 
 export interface SearchArgs {
