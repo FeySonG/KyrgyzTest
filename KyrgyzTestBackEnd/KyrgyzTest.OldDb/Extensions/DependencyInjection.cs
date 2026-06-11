@@ -1,8 +1,5 @@
-using KyrgyzTest.Application.Abstractions.MeilisearchAbstractions;
 using KyrgyzTest.Application.Abstractions.OldDbAbstractions.Regulations;
 using KyrgyzTest.Application.Abstractions.OldDbAbstractions.TestResults;
-using KyrgyzTest.OldDb.Models;
-using KyrgyzTest.OldDb.Repositories.Meilisearchs;
 using KyrgyzTest.OldDb.Repositories.Regulations;
 using KyrgyzTest.OldDb.Repositories.TestResultRepository;
 using KyrgyzTest.OldDb.Seeds;
@@ -31,7 +28,6 @@ public static class DependencyInjection
     {
         services.AddScoped<ITestResultRepository, TestResultRepository>();
         services.AddScoped<IRegulationRepository, RegulationRepository>();
-        services.AddScoped<ISearchService, MeiliSearchService>();
         services.AddScoped<MeiliSearchSeeder>();
     }
 }

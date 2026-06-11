@@ -7,11 +7,14 @@ const route = useRoute();
 const archiveStore = useArchiveStore();
 
 onMounted(async () => {
-  const id = Number(route.params.id);
+  const id = Number(route.query.id);
+  const source = route.query.source;
 
   if (!id) return;
+  if (typeof source !== "string") return;
 
-  await archiveStore.getStudentResult(id);
+  // console.log(source, id);
+  await archiveStore.getStudentResult(id, source);
 });
 
 const results = computed(() => archiveStore.studentResults ?? []);

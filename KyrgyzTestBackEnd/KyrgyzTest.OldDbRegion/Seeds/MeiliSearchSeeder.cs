@@ -11,11 +11,6 @@ public class MeiliSearchSeeder(LegacyDbRegionContext dbRegionContext)
     {
         var index = _client.Index("testResultsRegion");
 
-        // await index.UpdateSearchableAttributesAsync(new[]
-        // {
-        //     "NameStudent"
-        // });
-
         var batchSize = 1000;
         var total = await dbRegionContext.TestResults.CountAsync();
 

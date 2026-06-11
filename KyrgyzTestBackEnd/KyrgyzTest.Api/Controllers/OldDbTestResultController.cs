@@ -1,8 +1,10 @@
+using KyrgyzTest.Application.Contracts.OldDbs.Students;
 using KyrgyzTest.Application.Contracts.OldDbs.TestResults;
 using KyrgyzTest.Application.Models.KTOldDbs.Regulations.GetByIdRegulation;
 using KyrgyzTest.Application.Models.KTOldDbs.TestResults.GetById;
 using KyrgyzTest.Application.Models.KTOldDbs.TestResults.GetByStudentId;
 using KyrgyzTest.Application.Models.KTOldDbs.TestResults.SearchResultByName;
+using KyrgyzTest.DAL.Services.Meilisearchs;
 using KyrgyzTest.OldDb;
 using KyrgyzTest.OldDbRegion;
 using MediatR;
@@ -33,9 +35,9 @@ public class OldDbTestResultController(ISender sender,
     
     [Authorize]
     [HttpGet("get-by-student-id")]
-    public async Task<IActionResult> GetByStudentId(int id)
+    public async Task<IActionResult> GetByStudentId(GetByStudentIdArgs args)
     {
-        var response = await sender.Send(new GetStudentResultsQuery(id));
+        var response = await sender.Send(new GetStudentResultsQuery(args));
 
         return response.Match(
             onSuccess: value => Ok(response.Value),
@@ -67,49 +69,13 @@ public class OldDbTestResultController(ISender sender,
         ); 
     }
     
-    [HttpPost("init-search")]
-    public async Task<IActionResult> InitSearch()
-    {
-        var client = new MeilisearchClient("http://localhost:7700");
-        var index = client.Index("testResults");
-
-        var batchSize = 1000;
-        var total = await dbContext.TestResults.CountAsync();
-
-        for (int i = 0; i < total; i += batchSize)
-        {
-            var batch = await dbContext.TestResults
-                .AsNoTracking()
-                .Skip(i)
-                .Take(batchSize)
-                .ToListAsync();
-
-            await index.AddDocumentsAsync(batch);
-        }
-
-        return Ok("Indexed");
-    }
     
-    [HttpPost("init-search-region")]
-    public async Task<IActionResult> InitSearchRegion()
+    [HttpPost("rebuild-search")]
+    public async Task<IActionResult> RebuildSearch(
+        [FromServices] TestResultIndexer indexer)
     {
-        var client = new MeilisearchClient("http://localhost:7700");
-        var index = client.Index("testResultsRegion");
+        await indexer.RebuildAsync();
 
-        var batchSize = 1000;
-        var total = await dbRegionContext.TestResults.CountAsync();
-
-        for (int i = 0; i < total; i += batchSize)
-        {
-            var batch = await dbRegionContext.TestResults
-                .AsNoTracking()
-                .Skip(i)
-                .Take(batchSize)
-                .ToListAsync();
-
-            await index.AddDocumentsAsync(batch);
-        }
-
-        return Ok("Indexed");
+        return Ok();
     }
 }

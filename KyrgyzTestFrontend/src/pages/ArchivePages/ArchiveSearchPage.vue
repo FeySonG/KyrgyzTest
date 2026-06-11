@@ -66,7 +66,7 @@
           <div
               v-for="item in resultStore.studentNames"
               :key="item.studentId"
-              @click="goToStudent(item.studentId)"
+              @click="goToStudent(item.studentId, item.source)"
               class="px-4 py-3 rounded-xl
                    cursor-pointer
                    flex items-center justify-between
@@ -109,10 +109,11 @@ const isSearched = computed(() => {
   return resultStore.studentNames.length > 0;
 });
 
-const goToStudent = (id: number) => {
+const goToStudent = (id: number, source: string) => {
+
   router.push({
     name: "StudentResults",
-    params: { id },
+    query: { id, source },
   });
 };
 

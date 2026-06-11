@@ -3,7 +3,7 @@ import {
     AnalysisResponseDto,
     RegulationDto,
     ResultSearch,
-    SearchResult,
+    SearchResult, GetByStudentIdArgs,
     StudentResultResponse,
     TestResultDto
 } from "@/types/types";
@@ -27,11 +27,13 @@ export async function getRegulationById(id: number) : Promise<RegulationDto> {
     return res.data;
 }
 
-export async function getStudentResults(studentId: number): Promise<StudentResultResponse> {
+export async function getStudentResults(args: GetByStudentIdArgs): Promise<StudentResultResponse> {
+    // console.log("dcdsxsx" + args.source, args.idStudent);
+
     const res = await api.get<StudentResultResponse>(
         "/get-by-student-id",
         {
-            params: { id: studentId }
+            params: args
         }
     );
 

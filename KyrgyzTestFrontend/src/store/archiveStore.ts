@@ -1,14 +1,14 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
 import {useAlertStore} from "@/store/alertStore";
-import {RegulationDto, StudentResultResponse, TestResultDto, TestStudent} from "@/types/types";
+import {RegulationDto, StudentResultResponse, TestResultDto, TestResultSearchDto, TestStudent} from "@/types/types";
 import {getRegulationById, getStudentResults, searchArchiveResult} from "@/api/archiveApi";
 
 export const useArchiveStore = defineStore("archiveStore", () => {
 
     const searchName = ref<string>("");
     const regulation = ref<RegulationDto>();
-    const searchResults = ref<TestResultDto[]>([]);
+    const searchResults = ref<TestResultSearchDto[]>([]);
     const studentResults = ref<TestResultDto[]>([]);
     const studentNames = ref<TestStudent[]>([]);
     const loading = ref<boolean>(false);
@@ -42,10 +42,13 @@ export const useArchiveStore = defineStore("archiveStore", () => {
         }
     }
 
-    async function getStudentResult(id: number) {
+    async function getStudentResult(id: number, source: string) {
+
+       const student = {idStudent: id, source: source};
+
         try{
             loading.value = true;
-            const response = await getStudentResults(id);
+            const response = await getStudentResults(student);
             studentResults.value = response.testResults
 
         } catch(e: any) {
