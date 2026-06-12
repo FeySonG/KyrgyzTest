@@ -74,6 +74,8 @@ using (var scope = app.Services.CreateScope())
 
 // ================= PIPELINE =================
 
+
+
 app.UseHttpsRedirection();
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -84,13 +86,13 @@ app.UseCors("Frontend");
 
 app.UseAuthentication();
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
+
+app.UsePathBase("/api");
 
 app.MapControllers();
 
-app.UsePathBase("/api");
+
 
 app.Run();
 
