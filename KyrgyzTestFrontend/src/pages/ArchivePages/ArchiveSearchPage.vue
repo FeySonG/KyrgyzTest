@@ -29,6 +29,7 @@
 
         <button
             @click="searchTestResult"
+            :disabled="resultStore.loading"
             class="absolute right-1 h-10 px-4
                  flex items-center gap-2
                  bg-primary text-white
@@ -37,11 +38,28 @@
                  hover:bg-primary-dark
                  hover:scale-105
                  active:scale-95
+                 disabled:cursor-wait
+                 disabled:opacity-80
+                 disabled:hover:bg-primary
+                 disabled:hover:scale-100
                  transition-all duration-200"
         >
-          <MagnifyingGlassIcon class="w-4 h-4" />
-          <span>Найти</span>
+          <ArrowPathIcon
+              v-if="resultStore.loading"
+              class="w-4 h-4 animate-spin"
+          />
+          <MagnifyingGlassIcon v-else class="w-4 h-4" />
+          <span>{{ resultStore.loading ? 'Ищем...' : 'Найти' }}</span>
         </button>
+      </div>
+
+      <div
+          v-if="resultStore.loading"
+          class="absolute z-50 mt-2 w-full rounded-2xl
+                 bg-white p-5 text-center text-sm text-gray-400
+                 shadow-xl dark:bg-gray-900"
+      >
+        Ищем совпадения...
       </div>
 
       <!-- DROPDOWN -->
@@ -98,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
+import {ArrowPathIcon, MagnifyingGlassIcon} from "@heroicons/vue/24/outline";
 import { useArchiveStore } from "@/store/archiveStore";
 import {computed, ref} from "vue";
 import router from "@/router";
@@ -106,7 +124,7 @@ import router from "@/router";
 const resultStore = useArchiveStore();
 const query = ref("");
 const isSearched = computed(() => {
-  return resultStore.studentNames.length > 0;
+  return resultStore.searchCompleted;
 });
 
 const goToStudent = (id: number, source: string) => {
