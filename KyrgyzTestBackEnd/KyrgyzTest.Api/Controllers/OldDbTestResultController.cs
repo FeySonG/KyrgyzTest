@@ -1,3 +1,4 @@
+using KyrgyzTest.Api.Extensions;
 using KyrgyzTest.Application.Contracts.OldDbs.Students;
 using KyrgyzTest.Application.Contracts.OldDbs.TestResults;
 using KyrgyzTest.Application.Models.KTOldDbs.Regulations.GetByIdRegulation;
@@ -12,7 +13,6 @@ using Meilisearch;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SibersCRM.API.Extensions;
 
 namespace KyrgyzTest.Api.Controllers;
 

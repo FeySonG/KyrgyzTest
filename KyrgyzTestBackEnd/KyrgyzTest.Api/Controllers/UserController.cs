@@ -1,3 +1,4 @@
+using KyrgyzTest.Api.Extensions;
 using KyrgyzTest.Application.Contracts.Users;
 using KyrgyzTest.Application.Models.Users.ChangeLogin;
 using KyrgyzTest.Application.Models.Users.ChangePassword;
@@ -6,12 +7,9 @@ using KyrgyzTest.Application.Models.Users.Delete;
 using KyrgyzTest.Application.Models.Users.GetAll;
 using KyrgyzTest.Application.Models.Users.GetById;
 using KyrgyzTest.Application.Models.Users.Update;
-using KyrgyzTest.Core.Models.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SibersCRM.API.Extensions;
-using SibersCRM.Application.Models.Users;
 
 namespace KyrgyzTest.Api.Controllers;
 

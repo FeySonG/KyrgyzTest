@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using KyrgyzTest.Api.Extensions;
 using KyrgyzTest.Application.Contracts.Users;
 using KyrgyzTest.Application.Models.Users.Auth.CheckUser;
 using KyrgyzTest.Application.Models.Users.Auth.LogIn;
@@ -6,7 +7,6 @@ using KyrgyzTest.Application.Models.Users.Auth.Registration;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using SibersCRM.API.Extensions;
 
 namespace KyrgyzTest.Api.Controllers;
 

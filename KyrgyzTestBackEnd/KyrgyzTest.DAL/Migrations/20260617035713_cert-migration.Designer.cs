@@ -4,6 +4,7 @@ using KyrgyzTest.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KyrgyzTest.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260617035713_cert-migration")]
+    partial class certmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +36,8 @@ namespace KyrgyzTest.DAL.Migrations
                     b.Property<string>("AdditionalInfo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CertificateNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CertificateNumber")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("datetime2");
@@ -52,7 +54,7 @@ namespace KyrgyzTest.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CertificateRecords");
+                    b.ToTable("CertificateRecord");
                 });
 
             modelBuilder.Entity("KyrgyzTest.Core.Models.Users.User", b =>

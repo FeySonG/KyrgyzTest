@@ -16,9 +16,9 @@ public abstract class Repository<TEntity>(AppDbContext dbContext) : IRepository<
         .FirstOrDefaultAsync(e => e.Id == id);
 
     public void Add(TEntity entity) => dbContext
-        .Set<TEntity>()
+        .Set<TEntity>()  
         .Add(entity);
-
+    
     public void Remove(TEntity entity) => dbContext
         .Set<TEntity>()
         .Remove(entity);

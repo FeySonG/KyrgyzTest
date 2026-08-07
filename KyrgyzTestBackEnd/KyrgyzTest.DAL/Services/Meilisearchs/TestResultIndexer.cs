@@ -33,7 +33,6 @@ public class TestResultIndexer
             {
                 SearchId = $"old_{x.Id}",
                 Source = SearchSources.OldDb,
-
                 Id = x.Id,
                 IdStudent = x.IdStudent,
                 NameStudent = x.NameStudent,

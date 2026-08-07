@@ -2,6 +2,9 @@ using KyrgyzTest.Core.Models.Users;
 using KyrgyzTest.Application.Abstractions;
 using KyrgyzTest.Application.Abstractions.MeilisearchAbstractions;
 using KyrgyzTest.Application.Services;
+using KyrgyzTest.Core.Abstractions;
+using KyrgyzTest.Core.Models.CertificateRecords;
+using KyrgyzTest.DAL.Models.CertificateRecords;
 using KyrgyzTest.DAL.Models.Users;
 using KyrgyzTest.DAL.Seeds;
 using KyrgyzTest.DAL.Services;
@@ -30,10 +33,14 @@ public static class DependencyInjection
     }
     private static void InitRepositories(this IServiceCollection services)
     {
+         // services.AddScoped<IRepository, Repository>;
          services.AddScoped<IUserRepository, UserRepository>();
+         services.AddScoped<ICertificateRecordRepository, CertificateRecordRepository>();
          services.AddScoped<IUnitOfWork, UnitOfWork>();
          services.AddTransient<IPasswordService, PasswordService>();
          services.AddScoped<IDatabaseInitializer, DatabaseInitializer>();
          services.AddScoped<ISearchService, MeiliSearchService>();
-         services.AddScoped<TestResultIndexer>();    }
+         services.AddScoped<TestResultIndexer>();
+         services.AddSingleton<ICertificateRecordIndexer, CertificateRecordIndexer>();
+    }
 }
