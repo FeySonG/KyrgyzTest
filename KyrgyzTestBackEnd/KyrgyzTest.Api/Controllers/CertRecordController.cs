@@ -1,7 +1,11 @@
 ﻿using KyrgyzTest.Api.Extensions;
+using KyrgyzTest.Application.Contracts.CertificateRecords;
 using KyrgyzTest.Application.Models.CertificateRecords.AddFromExcelFile;
 using KyrgyzTest.Application.Models.CertificateRecords.Delete;
+using KyrgyzTest.Application.Models.CertificateRecords.GetAll;
 using KyrgyzTest.Application.Models.CertificateRecords.GetByDateRange;
+using KyrgyzTest.Application.Models.CertificateRecords.GetById;
+using KyrgyzTest.Application.Models.CertificateRecords.SearchByName;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +41,26 @@ public class CertRecordController(ISender sender) : ControllerBase
         );
     }
 
+    [HttpGet("get-by-id")]
+    public async Task<IActionResult> GetById(long id)
+    {
+        var response = await sender.Send(new GetByIdCertRecordQuery(id));
+
+        return response.Match(
+            onSuccess: record => Ok(record), 
+            onFailure: error => BadRequest(error.Message));
+    }
+
+    [HttpGet("search-by-received")]
+    public async Task<IActionResult> SearchByReceived([FromQuery] SearchByReceivedQuery query)
+    {
+        var response = await sender.Send(query);
+        return response.Match(
+            onSuccess: record => Ok(record),
+            onFailure: error => BadRequest(error.Message)
+            );
+    }
+
     [HttpGet("by-issue-date-range")]
     public async Task<IActionResult> GetByIssueDateRange(
         [FromQuery] DateTime startDate,
@@ -49,5 +73,26 @@ public class CertRecordController(ISender sender) : ControllerBase
             onSuccess: value => Ok(value),
             onFailure: error => BadRequest(error.Message)
         );
+    }
+
+    [HttpGet("get-all")]
+    public async Task<IActionResult> GetAll()
+    {
+        var response = await sender.Send(
+            new GetAllCertRecordQuery());
+
+        return response.Match(
+            onSuccess: value => Ok(value),
+            onFailure: error => BadRequest(error.Message)
+        );
+    }
+
+    [HttpGet("search-by-certnumber")]
+    public async Task<IActionResult> SearchByCertnumber([FromQuery] SearchByReceivedQuery query)
+    {
+        var response = await sender.Send(query);
+        return response.Match(
+            onSuccess: value => Ok(value),
+            onFailure: error => BadRequest(error.Message));
     }
 }

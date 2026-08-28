@@ -29,15 +29,23 @@ public class AddFromExcelCommandHandler(
         var reader = new ExcelReader();
         
         var entities = reader.Read(request.FileStream);
-        if (entities.Value is null)
+        if (entities.IsFailure)
         {
-            return new List<CertificateRecordDto>();
+            return entities.Error!;
+        }
+
+        var records = entities.Value;
+        if (records is null)
+        {
+            return Result.Fail<List<CertificateRecordDto>>(
+                "CertificateRecord.ReadError",
+                "Не удалось прочитать записи из Excel-файла.");
         }
         
-        await certRecordRepository.AddRangeAsync(entities.Value);
+        await certRecordRepository.AddRangeAsync(records);
         await unitOfWork.SaveChangesAsync();
 
-        var certificateRecords = CertificateRecordDto.MapListDto(entities.Value);
+        var certificateRecords = CertificateRecordDto.MapListDto(records);
         await certificateRecordIndexer.AddOrUpdateAsync(certificateRecords, cancellationToken);
 
         return certificateRecords;

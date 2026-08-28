@@ -1,6 +1,6 @@
 <template>
   <aside
-      class="w-[18%] h-screen
+      class="w-[18%] self-stretch
            bg-gradient-to-b from-[#8FB65E] to-[#7aa94f]
            dark:from-gray-900 dark:to-gray-800
            border-r border-white/10

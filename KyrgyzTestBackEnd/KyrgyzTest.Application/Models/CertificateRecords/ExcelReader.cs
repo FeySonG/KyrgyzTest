@@ -7,6 +7,42 @@ namespace KyrgyzTest.Application.Models.CertificateRecords;
 
 public class ExcelReader
 {
+    private static readonly Dictionary<string, string[]> RequiredColumns = new()
+    {
+        ["Сертификаттын ээсинин аты-жөнү"] =
+        [
+            "Сертификаттын ээсинин аты-жөнү"
+        ],
+
+        ["Мекеменин аталышы"] =
+        [
+            "Мекеменин аталышы"
+        ],
+
+        ["Сертификаттын номуру"] =
+        [
+            "Сертификаттын номуру",
+            "Сертификаттын номери"
+        ],
+
+        ["Деңгээли"] =
+        [
+            "Деңгээли",
+            "Дэңгээли"
+        ],
+
+        ["Сертификаттын берилген күнү"] =
+        [
+            "Сертификаттын берилген күнү"
+        ],
+
+        ["Эскертүү"] =
+        [
+            "Эскертүү",
+            "Эскертуу"
+        ]
+    };
+
     public Result<List<CertificateRecord>> Read(Stream stream)
     {
         using var workbook = new XLWorkbook(stream);
@@ -16,8 +52,23 @@ public class ExcelReader
         var headers = worksheet.Row(1)
             .CellsUsed()
             .ToDictionary(
-                c => c.GetString().Trim(),
-                c => c.Address.ColumnNumber);
+                c => NormalizeHeader(c.GetString()),
+                c => c.Address.ColumnNumber,
+                StringComparer.OrdinalIgnoreCase);
+
+        var missingColumns = RequiredColumns
+            .Where(column => !column.Value
+                .Any(alias => headers.ContainsKey(NormalizeHeader(alias))))
+            .Select(column => column.Key)
+            .ToList();
+
+        if (missingColumns.Count > 0)
+        {
+            return Result.Fail<List<CertificateRecord>>(
+                "CertificateRecord.MissingColumns",
+                $"В Excel отсутствуют обязательные колонки: {string.Join(", ", missingColumns)}. " +
+                $"Найдены колонки: {string.Join(", ", headers.Keys)}.");
+        }
 
         var records = new List<CertificateRecord>();
 
@@ -28,7 +79,7 @@ public class ExcelReader
 
             var received = GetString(row, headers, "Сертификаттын ээсинин аты-жөнү");
             var organization = GetString(row, headers, "Мекеменин аталышы");
-            var certificateNumber = GetString(row, headers, "Сертификаттын номери");
+            var certificateNumber = GetString(row, headers, "Сертификаттын номуру");
             var level = GetString(row, headers, "Деңгээли");
             var issueDate = GetDate(row, headers, "Сертификаттын берилген күнү");
             var additionalInfo = GetString(row, headers, "Эскертүү");
@@ -68,7 +119,7 @@ public class ExcelReader
         Dictionary<string, int> headers,
         string columnName)
     {
-        return row.Cell(headers[columnName]).GetString().Trim();
+        return row.Cell(GetColumnNumber(headers, columnName)).GetString().Trim();
     }
 
     private static long GetLong(
@@ -76,7 +127,7 @@ public class ExcelReader
         Dictionary<string, int> headers,
         string columnName)
     {
-        return row.Cell(headers[columnName]).GetValue<long>();
+        return row.Cell(GetColumnNumber(headers, columnName)).GetValue<long>();
     }
 
     private static DateTime GetDate(
@@ -84,6 +135,24 @@ public class ExcelReader
         Dictionary<string, int> headers,
         string columnName)
     {
-        return row.Cell(headers[columnName]).GetDateTime();
+        return row.Cell(GetColumnNumber(headers, columnName)).GetDateTime();
     }
+
+    private static int GetColumnNumber(
+        IReadOnlyDictionary<string, int> headers,
+        string columnName)
+    {
+        var aliases = RequiredColumns[columnName];
+        var matchedHeader = aliases
+            .Select(NormalizeHeader)
+            .First(headers.ContainsKey);
+
+        return headers[matchedHeader];
+    }
+
+    private static string NormalizeHeader(string value) =>
+        string.Join(
+            " ",
+            value.Replace('\uFEFF', ' ')
+                .Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
 }

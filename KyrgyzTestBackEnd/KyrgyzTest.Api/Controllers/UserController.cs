@@ -18,7 +18,7 @@ namespace KyrgyzTest.Api.Controllers;
 [Route("api-users")]
 public class UserController(ISender sender) : ControllerBase
 { 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAll()
     {
