@@ -87,51 +87,51 @@ const formatDate = (dateString: string) => {
             sticky top-0 z-10
           "
         >
-        <tr>
-          <th class="px-5 py-3 font-medium">
-            Организация
-          </th>
+          <tr>
+            <th class="px-5 py-3 font-medium">
+              Организация
+            </th>
 
-          <th class="px-5 py-3 font-medium">
-            Тест
-          </th>
+            <th class="px-5 py-3 font-medium">
+              Тест
+            </th>
 
-          <th class="px-5 py-3 font-medium">
-            Уровень
-          </th>
+            <th class="px-5 py-3 font-medium">
+              Уровень
+            </th>
 
-          <th class="px-5 py-3 font-medium text-center">
-            Баллы
-          </th>
+            <th class="px-5 py-3 font-medium text-center">
+              Баллы
+            </th>
 
-          <th
-              @click="toggleSort"
-              class="
-              px-5 py-3
-              font-medium
-              cursor-pointer
-              select-none
-              hover:text-primary
-              transition-colors
-              duration-300
-            "
-          >
-            <div class="flex items-center justify-center gap-1">
-              Дата
+            <th
+                @click="toggleSort"
+                class="
+                px-5 py-3
+                font-medium
+                cursor-pointer
+                select-none
+                hover:text-primary
+                transition-colors
+                duration-300
+              "
+            >
+              <div class="flex items-center justify-center gap-1">
+                Дата
 
-              <span
-                  class="
-                  inline-block
-                  transition-transform
-                  duration-300
-                "
-                  :class="sortDesc ? 'rotate-0' : 'rotate-180'"
-              >
-                  ↓
-                </span>
-            </div>
-          </th>
-        </tr>
+                <span
+                    class="
+                    inline-block
+                    transition-transform
+                    duration-300
+                  "
+                    :class="sortDesc ? 'rotate-0' : 'rotate-180'"
+                >
+                    ↓
+                  </span>
+              </div>
+            </th>
+          </tr>
         </thead>
 
         <!-- BODY -->

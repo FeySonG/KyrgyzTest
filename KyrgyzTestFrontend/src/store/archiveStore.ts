@@ -12,9 +12,12 @@ export const useArchiveStore = defineStore("archiveStore", () => {
     const studentResults = ref<TestResultDto[]>([]);
     const studentNames = ref<TestStudent[]>([]);
     const loading = ref<boolean>(false);
+    const searchCompleted = ref<boolean>(false);
     const alertStore = useAlertStore();
 
     async function searchResult(text: string) {
+        searchCompleted.value = false;
+
         try {
             loading.value = true;
 
@@ -22,6 +25,7 @@ export const useArchiveStore = defineStore("archiveStore", () => {
             searchName.value = text
             searchResults.value = result.testResults
             studentNames.value =  result.students
+            searchCompleted.value = true;
 
         } catch (e: any ) {
             alertStore.error(e.error || "Ошибка при поиске")
@@ -67,6 +71,7 @@ export const useArchiveStore = defineStore("archiveStore", () => {
         searchName,
         regulation,
         studentNames,
+        searchCompleted,
         loading
     }
 });

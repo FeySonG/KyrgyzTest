@@ -1,8 +1,7 @@
-using System.Runtime.InteropServices.JavaScript;
 using KyrgyzTest.Application.Extensions.Result;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SibersCRM.API.Extensions;
+namespace KyrgyzTest.Api.Extensions;
 
 
 public static class ResultExtension
@@ -16,5 +15,10 @@ public static class ResultExtension
             return onSuccess(result.Value);
 
         return onFailure(result.Error!);
+    }
+
+    public static IActionResult Match(this Result<object> result)
+    {
+        throw new NotImplementedException();
     }
 }

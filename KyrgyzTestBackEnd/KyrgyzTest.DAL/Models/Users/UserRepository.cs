@@ -6,7 +6,8 @@ namespace KyrgyzTest.DAL.Models.Users;
 
 public class UserRepository(AppDbContext dbContext) : Repository<User>(dbContext), IUserRepository
 {
-    public async Task<bool> CheckUniqueLogInAsync(string login) => await dbContext.Users.AnyAsync(u => u.Login == login);
+    private readonly AppDbContext _dbContext = dbContext;
+    public async Task<bool> CheckUniqueLogInAsync(string login) => await _dbContext.Users.AnyAsync(u => u.Login == login);
 
-    public Task<User?> GetUserByLogInAsync(string email) => dbContext.Users.FirstOrDefaultAsync(u => u.Login == email);
+    public Task<User?> GetUserByLogInAsync(string email) => _dbContext.Users.FirstOrDefaultAsync(u => u.Login == email);
 }

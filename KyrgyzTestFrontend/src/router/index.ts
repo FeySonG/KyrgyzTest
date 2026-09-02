@@ -10,6 +10,7 @@ import ArchivePage from "@/pages/ArchivePage.vue";
 import { useAuthStore } from "@/store/auth";
 import ArchiveSearchPage from "@/pages/ArchivePages/ArchiveSearchPage.vue";
 import TestResultPage from "@/pages/ArchivePages/TestResultPage.vue";
+import CertificateRecordsPage from "@/pages/ArchivePages/CertificateRecordsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -35,9 +36,16 @@ const routes: Array<RouteRecordRaw> = [
                 component: ArchiveSearchPage,
             },
             {
-                path: "student",   // 👈 ВОТ ЭТО ДОБАВЬ
+                // Детальная страница результатов выбранного студента.
+                path: "student",
                 name: "StudentResults",
                 component: TestResultPage,
+            },
+            {
+                // Реестр сертификатов — второй инструмент раздела «Архив».
+                path: "certificates",
+                name: "CertificateRecords",
+                component: CertificateRecordsPage,
             },
         ],
     },

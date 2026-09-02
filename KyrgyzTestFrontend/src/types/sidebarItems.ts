@@ -1,4 +1,4 @@
-import {UsersIcon, UserIcon, MagnifyingGlassIcon} from "@heroicons/vue/24/outline";
+import {UsersIcon, UserIcon, MagnifyingGlassIcon, DocumentCheckIcon} from "@heroicons/vue/24/outline";
 import {UserRole} from "@/types/userTypes/userRole";
 import type {Component} from "vue";
 
@@ -33,6 +33,13 @@ export const archiveItems: SidebarItem[] = [
         label: "Поиск результатов",
         to: "/archive/search",
         icon: MagnifyingGlassIcon,
+        roles: [UserRole.User, UserRole.Admin],
+    },
+    {
+        // Переход к реестру сертификатов внутри раздела «Архив».
+        label: "Выдачи сертификатов",
+        to: "/archive/certificates",
+        icon: DocumentCheckIcon,
         roles: [UserRole.User, UserRole.Admin],
     },
 

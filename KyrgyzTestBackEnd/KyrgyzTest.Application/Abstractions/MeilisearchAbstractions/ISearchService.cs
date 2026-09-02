@@ -5,6 +5,8 @@ namespace KyrgyzTest.Application.Abstractions.MeilisearchAbstractions;
 
 public interface ISearchService 
 {
-    Task<List<TestResultSearchDto>> SearchAsync(string query);
+
+    
+    Task<List<T>> SearchAsync<T>(string indexName, string query);
     
 }

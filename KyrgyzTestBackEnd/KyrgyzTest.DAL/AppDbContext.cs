@@ -1,4 +1,5 @@
 using System.Reflection;
+using KyrgyzTest.Core.Models.CertificateRecords;
 using KyrgyzTest.Core.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     
     public DbSet<User> Users => Set<User>();
-    
+    public DbSet<CertificateRecord> CertificateRecords => Set<CertificateRecord>();
     
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,14 +18,5 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     }
 }
 
-// dotnet ef migrations add FirstMigration `
-//      >> --project "KyrgyzTest.DAL/KyrgyzTest.DAL.csproj" `
-//      >> --startup-project "KyrgyzTest.Api/KyrgyzTest.Api.csproj"
-
-// dotnet ef database update
-//      >> --project "KyrgyzTest.DAL/KyrgyzTest.DAL.csproj" `
-//      >> --startup-project "KyrgyzTest.Api/KyrgyzTest.Api.csproj"
-
-// dotnet ef migrations remove `
-// --project "KyrgyzTest.DAL/KyrgyzTest.DAL.csproj" `
-// --startup-project "KyrgyzTest.Api/KyrgyzTest.Api.csproj"
+// dotnet ef migrations add cert-migration -p KyrgyzTest.DAL -s KyrgyzTest.Api --context AppDbContext
+// dotnet ef database update -p KyrgyzTest.DAL -s KyrgyzTest.Api --context AppDbContext

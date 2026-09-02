@@ -10,44 +10,40 @@ using KyrgyzTest.OldDbRegion.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region CORS (ТОЛЬКО ТАК ДЛЯ COOKIE + HTTPS)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
     {
-        policy
-            .WithOrigins("https://kyrgyztestsystem")
+        policy.WithOrigins(
+                "http://localhost:5173",
+                "http://127.0.0.1:5173",
+                "http://localhost:5174",
+                "http://127.0.0.1:5174",
+                "https://localhost:5173",
+                "https://127.0.0.1:5173",
+                "https://kyrgyztestsystem"
+            )
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
-#endregion
 
-
-// Add services to the container.
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// HttpContext
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IHttpAccessorService, HttpAccessorService>();
 
-#region AUTH (Cookies)
-builder.Services.AddAuthentication("Cookies")
-    .AddCookie("Cookies", options =>
-    {
-        options.Cookie.Path = "/";
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        options.Cookie.SameSite = SameSiteMode.Lax;
-    });
-
-#endregion
+builder.Services.AddAuthentication().AddCookie("Cookies", options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.SlidingExpiration = true;
+});
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddOldDbLayer(builder.Configuration);
@@ -56,46 +52,31 @@ builder.Services.AddApplication();
 
 var app = builder.Build();
 
-#region DB INIT
 using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     initializer.Initialize();
-
-    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
-
-    // if (env.IsDevelopment())
-    // {
-    //     var searchSeeder = scope.ServiceProvider.GetRequiredService<MeiliSearchSeeder>();
-    //     await searchSeeder.SeedAsync();
-    // }
 }
-#endregion
 
-// ================= PIPELINE =================
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-
-
-app.UseHttpsRedirection();
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.UseRouting();
-
-app.UseCors("Frontend");
-
-app.UseAuthentication();
-
-app.UseAuthorization();
-
+// IIS Express hosts the API under this virtual path. Keep it before routing
+// so every controller route remains available as /api/<controller-route>.
 app.UsePathBase("/api");
 
+// Avoid redirecting browser CORS preflight requests during local development.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+app.UseRouting();
+app.UseCors("Frontend");
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
-
-
-
 app.Run();
-
-// dotnet publish -c Release -o "C:\inetpub\wwwroot\KyrgyzTestAPI"
-
-//#0pen2017!!!
