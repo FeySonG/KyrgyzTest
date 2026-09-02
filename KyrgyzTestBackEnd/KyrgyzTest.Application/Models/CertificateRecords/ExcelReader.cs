@@ -36,10 +36,10 @@ public class ExcelReader
             "Сертификаттын берилген күнү"
         ],
 
-        ["Эскертүү"] =
+        ["Комментарии"] =
         [
-            "Эскертүү",
-            "Эскертуу"
+            "Комментарии",
+            "КомментариЙ"
         ]
     };
 
@@ -82,7 +82,7 @@ public class ExcelReader
             var certificateNumber = GetString(row, headers, "Сертификаттын номуру");
             var level = GetString(row, headers, "Деңгээли");
             var issueDate = GetDate(row, headers, "Сертификаттын берилген күнү");
-            var additionalInfo = GetString(row, headers, "Эскертүү");
+            var additionalInfo = GetString(row, headers, "Комментарии");
 
             if (string.IsNullOrWhiteSpace(certificateNumber))
             {

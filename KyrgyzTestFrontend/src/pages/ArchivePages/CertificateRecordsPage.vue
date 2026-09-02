@@ -124,7 +124,7 @@
               <th class="px-6 py-4 font-semibold">Номер сертификата</th>
               <th class="px-6 py-4 font-semibold">Дата выдачи</th>
               <th class="px-6 py-4 font-semibold">Организация</th>
-              <th class="px-6 py-4 font-semibold">Эскертүү</th>
+              <th class="px-6 py-4 font-semibold">КомментариЙ</th>
               <th class="px-6 py-4 text-center font-semibold">Действия</th>
             </tr>
           </thead>
@@ -220,7 +220,26 @@ const statCardIcons = {
 };
 type StatCardIcon = keyof typeof statCardIcons;
 
-// Статистические карточки. Только общее количество привязано к API; вторая метрика пока статична.
+// Находим первую и последнюю даты выдачи среди всех записей реестра.
+const certificatePeriod = computed(() => {
+  const dates = store.records
+      .map(record => record.issueDate.slice(0, 10))
+      .filter(Boolean)
+      .sort();
+
+  if (dates.length === 0) {
+    return {value: "—", description: "Записей пока нет"};
+  }
+
+  const firstDate = formatDate(dates[0]);
+  const lastDate = formatDate(dates[dates.length - 1]);
+  return {
+    value: `с ${firstDate} по ${lastDate}`,
+    description: "Дата первого и последнего сертификата",
+  };
+});
+
+// Статистические карточки, рассчитанные по актуальному реестру.
 const statCards = computed<Array<{
   label: string;
   value: string;
@@ -228,7 +247,7 @@ const statCards = computed<Array<{
   icon: StatCardIcon;
 }>>(() => [
   {label: "Всего сертификатов", value: store.records.length.toLocaleString("ru-RU"), description: "В реестре", icon: "document"},
-  {label: "Внесено сегодня", value: "18", description: "Пока статично", icon: "calendar"},
+  {label: "Период выдачи", value: certificatePeriod.value.value, description: certificatePeriod.value.description, icon: "calendar"},
 ]);
 
 // Одновременная фильтрация по ФИО, номеру и включительному диапазону даты.
