@@ -80,3 +80,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+
+// dotnet publish -c Release -o "C:\inetpub\wwwroot\KyrgyzTestAPI"   
