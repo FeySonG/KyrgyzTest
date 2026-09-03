@@ -22,7 +22,7 @@
         <nav class="flex items-center gap-2 text-l">
 
           <RouterLink
-              v-if="user?.role === 'User' || user?.role === 'Admin'"
+              v-if="user?.role === 'TUUK' || user?.role === 'Admin'"
               to="/archive"
               class="px-4 py-2 rounded-xl
                    transition-all duration-200
@@ -33,7 +33,6 @@
           </RouterLink>
 
           <RouterLink
-              v-if="user?.role === 'User' || user?.role === 'Admin'"
               to="/home"
               class="px-4 py-2 rounded-xl
                    transition-all duration-200

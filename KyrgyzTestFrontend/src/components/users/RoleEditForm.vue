@@ -4,8 +4,9 @@
     <div>
       <label class="block text-sm font-medium mb-1 dark:text-pearl">Роль</label>
       <select v-model="role" class="w-full border rounded px-3 py-2 text-text-dark">
-        <option :value="UserRole.User">User</option>
         <option :value="UserRole.Admin">Admin</option>
+        <option :value="UserRole.TUUK">TUUK</option>
+        <option :value="UserRole.User">User</option>
       </select>
     </div>
 

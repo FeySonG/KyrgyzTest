@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && robocopy dist C:\\inetpub\\wwwroot\\KyrgyzTestFrontend /MIR /R:2 /W:1"
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",

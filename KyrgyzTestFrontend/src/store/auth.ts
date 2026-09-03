@@ -5,7 +5,7 @@ import {
     logoutUser,
     fetchCurrentUser,
     type RegisterRequest
-} from "../api/authApi";
+} from "@/api/authApi";
 import { CurrentUser } from "@/types/types";
 import { useAlertStore } from "@/store/alertStore";
 
