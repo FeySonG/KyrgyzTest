@@ -24,7 +24,7 @@ export const userProfileItems: SidebarItem[] = [
         label: "Профиль",
         to: "/profile",
         icon: UserIcon,
-        roles: [UserRole.User, UserRole.Admin],
+        roles:[],
     },
 ];
 
@@ -33,14 +33,14 @@ export const archiveItems: SidebarItem[] = [
         label: "Поиск результатов",
         to: "/archive/search",
         icon: MagnifyingGlassIcon,
-        roles: [UserRole.User, UserRole.Admin],
+        roles: [UserRole.Admin,  UserRole.TUUK],
     },
     {
         // Переход к реестру сертификатов внутри раздела «Архив».
         label: "Выдачи сертификатов",
         to: "/archive/certificates",
         icon: DocumentCheckIcon,
-        roles: [UserRole.User, UserRole.Admin],
+        roles: [UserRole.Admin, UserRole.TUUK],
     },
 
 ]

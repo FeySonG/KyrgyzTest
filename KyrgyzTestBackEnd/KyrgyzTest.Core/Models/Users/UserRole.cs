@@ -3,6 +3,6 @@ namespace KyrgyzTest.Core.Models.Users;
 public enum UserRole
 {
     Admin,       
-    User         // Сотрудник
-
+    User,         // Шнырь
+    TUUK,         // Тууктар (Куры)
 }
