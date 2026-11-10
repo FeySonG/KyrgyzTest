@@ -57,12 +57,14 @@ using (var scope = app.Services.CreateScope())
     var initializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     initializer.Initialize();
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
 
 // IIS Express hosts the API under this virtual path. Keep it before routing
 // so every controller route remains available as /api/<controller-route>.
