@@ -14,6 +14,8 @@ public partial class LegacyDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Student> Students { get; set; }
+    
     public virtual DbSet<AuthorTest> AuthorTests { get; set; }
 
     public virtual DbSet<BlankTestVariant> BlankTestVariants { get; set; }
@@ -377,6 +379,7 @@ public partial class LegacyDbContext : DbContext
             entity.Property(e => e.Ball).HasDefaultValue(0m);
             entity.Property(e => e.FormatTestType).HasDefaultValue("Standard");
         });
+        
 
         modelBuilder.Entity<TestResultBallInfo>(entity =>
         {

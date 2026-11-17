@@ -1,6 +1,8 @@
 using KyrgyzTest.Application.Abstractions.OldDbRegionAbstractions.Regulations;
+using KyrgyzTest.Application.Abstractions.OldDbRegionAbstractions.Students;
 using KyrgyzTest.Application.Abstractions.OldDbRegionAbstractions.TestResults;
 using KyrgyzTest.OldDbRegion.Repositories.Regulations;
+using KyrgyzTest.OldDbRegion.Repositories.Students;
 using KyrgyzTest.OldDbRegion.Repositories.TestResultRepository;
 using KyrgyzTest.OldDbRegion.Seeds;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +20,11 @@ public static class DependencyInjection
         
         services.AddDbContext<LegacyDbRegionContext>(options =>
         {
-            options.UseSqlServer(conn);
+            options.UseSqlServer(
+                conn,
+                sqlOptions => sqlOptions.MigrationsAssembly(
+                    typeof(LegacyDbRegionContext).Assembly.FullName)
+            );
         });
 
         services.InitRepositories();
@@ -27,6 +33,7 @@ public static class DependencyInjection
     private static void InitRepositories(this IServiceCollection services)
     {
         services.AddScoped<ITestResultRegionRepository, TestResultRepository>();
+        services.AddScoped<IStudentRegionRepository, StudentRepository>();
         services.AddScoped<IRegulationRegionRepository, RegulationRepository>();
         services.AddScoped<MeiliSearchSeeder>();
     }

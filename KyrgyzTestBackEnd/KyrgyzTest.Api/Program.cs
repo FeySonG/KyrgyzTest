@@ -4,9 +4,12 @@ using KyrgyzTest.Application.Abstractions;
 using KyrgyzTest.Application.Extensions;
 using KyrgyzTest.Application.Services;
 using KyrgyzTest.DAL.Extensions;
+using KyrgyzTest.OldDb;
 using KyrgyzTest.OldDb.Extensions;
 using KyrgyzTest.OldDb.Seeds;
 using KyrgyzTest.OldDbRegion.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,8 +57,14 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var initializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
+    var services = scope.ServiceProvider;
+    // Основная БД
+    var initializer = services.GetRequiredService<IDatabaseInitializer>();
     initializer.Initialize();
+
+    // Легаси БД
+    var legacyDb = services.GetRequiredService<LegacyDbContext>();
+    legacyDb.Database.Migrate();
 }
 
 if (app.Environment.IsDevelopment())

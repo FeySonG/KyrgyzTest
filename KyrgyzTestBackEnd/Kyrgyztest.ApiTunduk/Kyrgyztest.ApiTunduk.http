@@ -1,0 +1,6 @@
+@Kyrgyztest.ApiTunduk_HostAddress = http://localhost:5076
+
+GET {{Kyrgyztest.ApiTunduk_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

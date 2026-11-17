@@ -9,17 +9,13 @@ using KyrgyzTest.DAL.Services.Meilisearchs;
 using KyrgyzTest.OldDb;
 using KyrgyzTest.OldDbRegion;
 using MediatR;
-using Meilisearch;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace KyrgyzTest.Api.Controllers;
 
 [Route("api-archive")]
-public class OldDbTestResultController(ISender sender,
-                                LegacyDbContext dbContext,
-                                LegacyDbRegionContext dbRegionContext) : ControllerBase
+public class OldDbTestResultController(ISender sender) : ControllerBase
 {
     [Authorize]
     [HttpGet("get-by-{id}")]
