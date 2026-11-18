@@ -3,7 +3,7 @@ import axios from "axios";
 import {CurrentUser} from "@/types/types";
 
 const api = axios.create({
-    baseURL: "http://localhost:5227/api-auth",
+    baseURL: `${import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5227"}/api-auth`,
     withCredentials: true // если у тебя cookie-авторизация
 });
 

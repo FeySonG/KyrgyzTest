@@ -1,0 +1,23 @@
+services:
+  api:
+    image: ghcr.io/feysong/kyrgyztest-api:latest
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: ${DEFAULT_CONNECTION_STRING:?Set DEFAULT_CONNECTION_STRING in .env}
+      ConnectionStrings__OldDbConnection: ${OLD_DB_CONNECTION_STRING:?Set OLD_DB_CONNECTION_STRING in .env}
+      ConnectionStrings__OldDbRegionConnection: ${OLD_DB_REGION_CONNECTION_STRING:?Set OLD_DB_REGION_CONNECTION_STRING in .env}
+      Meilisearch__Url: ${MEILISEARCH_URL:-http://host.docker.internal:7700}
+      Meilisearch__ApiKey: ${MEILISEARCH_API_KEY:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    expose:
+      - "8080"
+
+  frontend:
+    image: ghcr.io/feysong/kyrgyztest-frontend:latest
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "${HTTP_PORT:-8080}:80"

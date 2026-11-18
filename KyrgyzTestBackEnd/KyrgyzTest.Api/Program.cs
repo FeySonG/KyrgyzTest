@@ -10,6 +10,16 @@ using KyrgyzTest.OldDbRegion.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// The API runs behind the frontend nginx container in production. Trust the
+// forwarded scheme so HTTPS termination at the host proxy works correctly.
+builder.Services.Configure<Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
+        | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 // Добавляем CORS
 builder.Services.AddCors(options =>
 {
@@ -57,6 +67,8 @@ builder.Services.AddOldDbRegionLayer(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
+
+app.UseForwardedHeaders();
 
 // Run database seed
 using (var scope = app.Services.CreateScope())

@@ -3,7 +3,7 @@ import type {CertificateRecord} from "@/types/certificateRecord";
 
 // Отдельный axios-клиент для всех методов CertRecordController.
 const api = axios.create({
-    baseURL: "http://localhost:5227/api-cert-record",
+    baseURL: `${import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5227"}/api-cert-record`,
     withCredentials: true,
 });
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import {AnalysisResponseDto, SearchArgs, TextAnalysisDto, TextRequest, WordFrequency,} from "../types/types";
 
 const api = axios.create({
-    baseURL: "http://localhost:5227/api/text-works",
+    baseURL: `${import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5227"}/api/text-works`,
 });
 
 export async function analyzeText(request: TextRequest): Promise<AnalysisResponseDto> {
