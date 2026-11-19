@@ -9,6 +9,7 @@ using KyrgyzTest.DAL.Models.Users;
 using KyrgyzTest.DAL.Seeds;
 using KyrgyzTest.DAL.Services;
 using KyrgyzTest.DAL.Services.Meilisearchs;
+using Meilisearch;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,14 @@ public static class DependencyInjection
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        var meilisearchUrl = configuration["Meilisearch:Url"]
+                             ?? throw new InvalidOperationException("Meilisearch:Url is not configured.");
+        var meilisearchApiKey = configuration["Meilisearch:ApiKey"];
+
+        services.AddSingleton(_ => string.IsNullOrWhiteSpace(meilisearchApiKey)
+            ? new MeilisearchClient(meilisearchUrl)
+            : new MeilisearchClient(meilisearchUrl, meilisearchApiKey));
+
         //register sql server and run existing migrations
         services.AddDbContext<AppDbContext>(optionsBuilder =>
         {

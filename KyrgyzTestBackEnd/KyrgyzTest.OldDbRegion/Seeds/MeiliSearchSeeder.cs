@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KyrgyzTest.OldDbRegion.Seeds;
 
-public class MeiliSearchSeeder(LegacyDbRegionContext dbRegionContext)
+public class MeiliSearchSeeder(LegacyDbRegionContext dbRegionContext, MeilisearchClient client)
 {
-    private readonly MeilisearchClient _client = new("http://localhost:7700");
+    private readonly MeilisearchClient _client = client;
 
     public async Task SeedAsync()
     {

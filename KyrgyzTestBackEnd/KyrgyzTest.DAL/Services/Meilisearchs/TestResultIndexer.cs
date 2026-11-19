@@ -9,16 +9,16 @@ public class TestResultIndexer
 {
     private readonly ITestResultRepository _oldRepo;
     private readonly ITestResultRegionRepository _regionRepo;
-
-    private readonly MeilisearchClient _client =
-        new("http://localhost:7700");
+    private readonly MeilisearchClient _client;
 
     public TestResultIndexer(
         ITestResultRepository oldRepo,
-        ITestResultRegionRepository regionRepo)
+        ITestResultRegionRepository regionRepo,
+        MeilisearchClient client)
     {
         _oldRepo = oldRepo;
         _regionRepo = regionRepo;
+        _client = client;
     }
 
     public async Task RebuildAsync()

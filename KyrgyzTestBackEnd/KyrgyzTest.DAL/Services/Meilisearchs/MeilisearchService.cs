@@ -6,8 +6,12 @@ namespace KyrgyzTest.DAL.Services.Meilisearchs;
 
 public class MeiliSearchService : ISearchService
 {
-    private readonly MeilisearchClient _client =
-        new("http://localhost:7700");
+    private readonly MeilisearchClient _client;
+
+    public MeiliSearchService(MeilisearchClient client)
+    {
+        _client = client;
+    }
 
     public async Task<List<T>> SearchAsync<T>(
         string indexName,

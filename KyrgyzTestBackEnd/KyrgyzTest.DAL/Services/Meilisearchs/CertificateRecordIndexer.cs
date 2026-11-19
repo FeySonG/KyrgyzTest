@@ -1,7 +1,6 @@
 using KyrgyzTest.Application.Abstractions.MeilisearchAbstractions;
 using KyrgyzTest.Application.Contracts.CertificateRecords;
 using Meilisearch;
-using Microsoft.Extensions.Configuration;
 using MeilisearchIndex = Meilisearch.Index;
 
 namespace KyrgyzTest.DAL.Services.Meilisearchs;
@@ -20,15 +19,9 @@ public sealed class CertificateRecordIndexer : ICertificateRecordIndexer
     private readonly SemaphoreSlim _configurationLock = new(1, 1);
     private bool _isConfigured;
 
-    public CertificateRecordIndexer(IConfiguration configuration)
+    public CertificateRecordIndexer(MeilisearchClient client)
     {
-        var url = configuration["Meilisearch:Url"]
-                  ?? throw new InvalidOperationException("Meilisearch:Url is not configured.");
-        var apiKey = configuration["Meilisearch:ApiKey"];
-
-        _client = string.IsNullOrWhiteSpace(apiKey)
-            ? new MeilisearchClient(url)
-            : new MeilisearchClient(url, apiKey);
+        _client = client;
     }
 
     /// <summary>Добавляет новые DTO или заменяет документы с совпадающими идентификаторами.</summary>
