@@ -41,6 +41,12 @@ Generated_Code/
 
 # Test results
 [Tt]est[Rr]esult*/
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/
+KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/*
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/TestResultDto.cs
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/TestSearchResponseDto.cs
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/StudentResultResponse.cs
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/ResultSearchArgs.cs
 [Bb]uild[Ll]og.*
 TestResult.xml
 nunit-*.xml
