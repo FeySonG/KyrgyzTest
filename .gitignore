@@ -47,6 +47,11 @@ KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/*
 !KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/TestSearchResponseDto.cs
 !KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/StudentResultResponse.cs
 !KyrgyzTestBackEnd/KyrgyzTest.Application/Contracts/OldDbs/TestResults/ResultSearchArgs.cs
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Abstractions/OldDbRegionAbstractions/TestResults/
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Abstractions/OldDbAbstractions/TestResults/
+!KyrgyzTestBackEnd/KyrgyzTest.Application/Models/KTOldDbs/TestResults/
+!KyrgyzTestBackEnd/KyrgyzTest.OldDb/Repositories/TestResultRepository/
+!KyrgyzTestBackEnd/KyrgyzTest.OldDbRegion/Repositories/TestResultRepository/
 [Bb]uild[Ll]og.*
 TestResult.xml
 nunit-*.xml
